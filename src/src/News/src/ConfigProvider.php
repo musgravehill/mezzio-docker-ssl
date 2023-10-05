@@ -38,6 +38,7 @@ class ConfigProvider
             'delegators' => [
                 Application::class => [
                     RoutesDelegator::class,
+                    //AppDelegator::class,
                 ],
             ],
             'factories'  => [

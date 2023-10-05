@@ -30,7 +30,7 @@ final class Version20230912064623 extends AbstractMigration
         
         $newsTable->setPrimaryKey(['id']);
 
-        $newsTable->addIndex(['statuss']);
+        $newsTable->addIndex(['status']);
 
     }
 

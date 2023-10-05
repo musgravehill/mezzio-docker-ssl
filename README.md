@@ -85,3 +85,12 @@ PS:
 
 2. News\Handler\ListHandler 
     valueObject for page, limit
+
+3. News\Handler\CreateHandler    
+    API client send POST: https://x.not-real.ru/news
+    x-www-form-urlencoded
+    title
+    text
+
+4. News\NewsService
+    findAll: 'status' => [Status::Publicated, Status::Draft,],   to see created news (draft)

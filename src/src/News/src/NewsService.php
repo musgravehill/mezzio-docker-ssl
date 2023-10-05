@@ -30,7 +30,7 @@ class NewsService implements NewsServiceInterface
     {
         $offset =  ($page - 1) * $limit;
         return $this->getRepository()->findBy([
-           'status' => Status::Publicated
+           'status' => [Status::Publicated, Status::Draft,],
         ], [
             'created' => 'DESC'
         ], $limit, $offset);

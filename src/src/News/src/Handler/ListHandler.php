@@ -23,12 +23,15 @@ class ListHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = $request->getQueryParams();
-        $page = $data['page'];
-        $limit = $data['limit'];
+
+        //TODO valueObject 
+        $page = $data['page'] ?? 1;
+        $limit = $data['limit'] ?? 1;
 
         $news = $this->newsService->findAll($page, $limit);
+
         $data = [];
-        foreach($news as $item) {
+        foreach ($news as $item) {
             $data[] = [
                 'id' => $item->getId(),
                 'title' => $item->getTitle(),

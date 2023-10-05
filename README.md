@@ -76,3 +76,12 @@ PS:
   
 
 Аутентификация и авторизация остаётся за рамками этого проекта.
+
+1. set DEV mode to control all warn\err:
+    docker container attach shell. 
+    cd /var/www && composer development-enable  
+    cd /var/www && composer development-disable  
+    cd /var/www && composer development-status 
+
+2. News\Handler\ListHandler 
+    valueObject for page, limit

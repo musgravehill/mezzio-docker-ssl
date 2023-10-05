@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace News;
+
 use Doctrine\ORM\EntityManagerInterface;
 use News\Contract\NewsServiceInterface;
 use News\Entity\News;
@@ -15,9 +16,7 @@ class NewsService implements NewsServiceInterface
 
     public function __construct(
         private EntityManagerInterface $em
-    )
-    {
-
+    ) {
     }
 
     public function findById(UuidInterface $id): News
@@ -30,7 +29,7 @@ class NewsService implements NewsServiceInterface
     {
         $offset =  ($page - 1) * $limit;
         return $this->getRepository()->findBy([
-           'status' => [Status::Publicated, Status::Draft,],
+            'status' => [Status::Publicated, Status::Draft, Status::Deleted],
         ], [
             'created' => 'DESC'
         ], $limit, $offset);
@@ -57,5 +56,4 @@ class NewsService implements NewsServiceInterface
     {
         return $this->em->getRepository(News::class);
     }
-
 }

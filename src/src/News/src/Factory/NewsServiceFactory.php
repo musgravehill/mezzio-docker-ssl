@@ -17,7 +17,7 @@ class NewsServiceFactory implements FactoryInterface
         ContainerInterface $container,
         $requestedName,
         ?array $options = null
-    ): NewsServiceInterface {
+    ): NewsServiceInterface {    
         return new NewsService(
             $container->get(EntityManagerInterface::class)
         );

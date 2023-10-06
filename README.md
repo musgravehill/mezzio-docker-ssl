@@ -84,7 +84,7 @@ PS:
     cd /var/www && composer development-status 
 
 2. News\Handler\ListHandler 
-    valueObject for page, limit
+   TODO: Validate user inputs, valueObject  for page, limit
 
 3. News\Handler\CreateHandler    
     API client send POST: https://x.not-real.ru/news
@@ -92,5 +92,14 @@ PS:
     title
     text
 
+    TODO: Validate user inputs
+
 4. News\NewsService
     findAll: 'status' => [Status::Publicated, Status::Draft,],   to see created news (draft)
+
+    TODO: 
+    private function getRepository(): NewsRepository
+    {
+        return $this->em->getRepository(News::class);
+    }
+    Can be moved to parent class with Late static binding. static::class() 

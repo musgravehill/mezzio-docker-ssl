@@ -15,7 +15,6 @@ use Ramsey\Uuid\UuidInterface;
 #[ORM\Table(name: 'news')]
 final class News
 {
-
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'uuid')]
     #[ORM\GeneratedValue(strategy: 'NONE')]
@@ -24,11 +23,9 @@ final class News
     #[ORM\Column(name: 'title', type: 'string')]
     private string $title;
 
-
     #[ORM\Column(name: 'text', type: 'string')]
     private string $text;
 
-    
     #[ORM\Column(name: 'status', type: 'smallint', enumType: Status::class)]
     private Status $status;
 
@@ -39,8 +36,7 @@ final class News
     public function __construct(
         string $title,
         string $text
-    )
-    {
+    ) {
         $this->id = Uuid::uuid7();
         $this->title = $title;
         $this->text = $text;
@@ -68,5 +64,4 @@ final class News
     {
         return $this->created;
     }
-
 }

@@ -13,7 +13,6 @@ use Ramsey\Uuid\UuidInterface;
 
 class NewsService implements NewsServiceInterface
 {
-
     public function __construct(
         private EntityManagerInterface $em
     ) {
@@ -23,7 +22,6 @@ class NewsService implements NewsServiceInterface
     {
         return $this->getRepository()->findById($id);
     }
-
 
     public function findAll(int $page = 1, int $limit = 10): iterable
     {
@@ -43,14 +41,12 @@ class NewsService implements NewsServiceInterface
         return $news;
     }
 
-
     public function delete(UuidInterface $id): void
     {
         $news = $this->findById($id);
         $this->em->remove($news);
         $this->em->flush();
     }
-
 
     private function getRepository(): NewsRepository
     {

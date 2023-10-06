@@ -52,36 +52,51 @@ PS:
 0. Validate user inputs!
 
 1.  === Domain purity ===
+
     Отделить Infrastructure Doctrine Entity от Domain Entity. 
+
     Сделать Domain\RepositoryInterface, а Infrastructure\Doctrine будет implements эти интерфейсы. 
+
     Добавить valueObjects. 
+
     Добавить DTO для передачи в\из handler. 
+
     В Domain Entity сделать явные методы:  
+
         public static function new()
+
         public static function hydrateExisting()
+
         public function changeSomeBySomeAction()
 
+
 2. set DEV mode to control all warn\err:
+
     docker container attach shell. 
+
     cd /var/www && composer development-enable  
     cd /var/www && composer development-disable  
     cd /var/www && composer development-status 
 
-3. News\Handler\CreateHandler    
+3. News\Handler\CreateHandler   
+ 
     API client send POST: https://x.not-real.ru/news
     x-www-form-urlencoded
     title
     text
 
 4. News\NewsService
+
     findAll: 'status' => [Status::Publicated, Status::Draft,],   to see created news (draft)
 
 5.  News\NewsService
+
     TODO: 
         private function getRepository(): NewsRepository
         {
             return $this->em->getRepository(News::class);
         }
+
         Can be moved to parent class with Late static binding. static::class() 
 
 

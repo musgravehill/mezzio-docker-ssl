@@ -78,9 +78,7 @@ RUN set -eux; \
     			| tr ',' '\n' \
     			| sort -u \
     			| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-    	)"; 
-
-RUN set -eux; \      
+    	)"; \    
     	apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
         if [ "$WITH_XDEBUG" == 'true' ] ; then \
           pecl install xdebug; \

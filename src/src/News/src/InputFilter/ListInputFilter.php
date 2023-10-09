@@ -18,6 +18,7 @@ class ListInputFilter extends InputFilter
         $this->add(
             [
                 'name'              => 'page',
+                'required'          => true,
                 'allow_empty'       => false,
                 'validators'        => [
                     [
@@ -45,6 +46,7 @@ class ListInputFilter extends InputFilter
         $this->add(
             [
                 'name'              => 'limit',
+                'required'          => true,
                 'allow_empty'       => false,
                 'validators'        => [
                     [

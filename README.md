@@ -51,6 +51,8 @@ PS:
 ## Предложения. 
 0. Validate user inputs!
 
+0.0. Error handlers
+
 1.  === Domain purity ===
 
     Отделить Infrastructure Doctrine Entity от Domain Entity. 

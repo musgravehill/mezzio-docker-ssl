@@ -15,10 +15,12 @@ interface NewsServiceInterface
 
     public function findById(UuidInterface $id): News;
 
+    /**
+     * @return NewsListItemDto[]
+     */
     public function findAll(PageNumber $page, CountOnPage $limit): iterable;
 
     public function create(string $title, string $text): News;
 
     public function delete(UuidInterface $id): void;
-
 }

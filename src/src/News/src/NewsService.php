@@ -6,6 +6,7 @@ namespace News;
 
 use Doctrine\ORM\EntityManagerInterface;
 use News\Contract\NewsServiceInterface;
+use News\Dto\NewsListItemDto;
 use News\Entity\News;
 use News\Entity\Status;
 use News\Repository\NewsRepository;
@@ -25,14 +26,29 @@ class NewsService implements NewsServiceInterface
         return $this->getRepository()->findById($id);
     }
 
+    /**
+     * @return NewsListItemDto[]
+     */
     public function findAll(PageNumber $page, CountOnPage $limit): iterable
     {
         $offset =  ($page->getPageNumber() - 1) * $limit->getCop();
-        return $this->getRepository()->findBy([
+        $raw = $this->getRepository()->findBy([
             'status' => [Status::Publicated, Status::Draft, Status::Deleted],
         ], [
             'created' => 'DESC'
         ], $limit->getCop(), $offset);
+
+        $res = [];
+        foreach ($raw as $item) {
+            $res[] = new NewsListItemDto(
+                id: strval($item->getId()),
+                title: strval($item->getTitle()),
+                text: strval($item->getText()),
+                created_at: strval($item->getCreated()->format('Y-m-d')),
+            );
+        }
+
+        return $res;
     }
 
     public function create(string $title, string $text): News

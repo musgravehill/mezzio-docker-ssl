@@ -35,9 +35,12 @@ RUN set -eux; \
                 libzip-dev \
                 linux-headers \
                 zlib-dev \
-        ; \
-        \
-        apk add --no-cache imagemagick; \
+        ; 
+
+RUN set -eux; \
+        apk add --no-cache imagemagick; 
+
+RUN set -eux; \
         docker-php-ext-install -j$(nproc) \
           bcmath \
           curl \
@@ -53,29 +56,38 @@ RUN set -eux; \
           sockets \
           xsl \
           zip \
-        ; \
+        ; 
+
+RUN set -eux; \        
         pecl install \
           imagick \
           redis  \
-        ; \
+        ; 
+
+RUN set -eux; \
     	pecl clear-cache; \
         docker-php-ext-configure gd --enable-gd --with-webp --with-jpeg --with-xpm --with-freetype; \
         docker-php-ext-enable \
           imagick \
           redis  \
-        ; \
-        \
+        ; 
+
+RUN set -eux; \
         runDeps="$( \
     		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
     			| tr ',' '\n' \
     			| sort -u \
     			| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-    	)"; \
+    	)"; 
+
+RUN set -eux; \      
     	apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
         if [ "$WITH_XDEBUG" == 'true' ] ; then \
           pecl install xdebug; \
           docker-php-ext-enable xdebug; \
-        fi; \
+        fi; 
+
+RUN set -eux; \        
         apk del --no-cache .build-deps ;
 
 RUN set -eux; \

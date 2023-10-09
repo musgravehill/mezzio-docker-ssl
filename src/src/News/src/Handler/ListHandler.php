@@ -13,6 +13,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use Laminas\InputFilter\InputFilterInterface;
+use News\ValueObject\CountOnPage;
+use News\ValueObject\PageNumber;
 
 class ListHandler implements RequestHandlerInterface
 {
@@ -31,10 +33,9 @@ class ListHandler implements RequestHandlerInterface
             //throw new InvalidArgumentException(message: json_encode($messages));
             return new JsonResponse($messages, StatusCodeInterface::STATUS_BAD_REQUEST);
         }
-
-        //TODO valueObject 
-        $page = 1;
-        $limit = 1;
+        
+        $page = new PageNumber($this->inputFilter->getValue('page'));
+        $limit = new CountOnPage($this->inputFilter->getValue('limit'));
 
         $news = $this->newsService->findAll($page, $limit);
 

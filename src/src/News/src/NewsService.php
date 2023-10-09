@@ -9,6 +9,8 @@ use News\Contract\NewsServiceInterface;
 use News\Entity\News;
 use News\Entity\Status;
 use News\Repository\NewsRepository;
+use News\ValueObject\CountOnPage;
+use News\ValueObject\PageNumber;
 use Ramsey\Uuid\UuidInterface;
 
 class NewsService implements NewsServiceInterface
@@ -23,14 +25,14 @@ class NewsService implements NewsServiceInterface
         return $this->getRepository()->findById($id);
     }
 
-    public function findAll(int $page = 1, int $limit = 10): iterable
+    public function findAll(PageNumber $page, CountOnPage $limit): iterable
     {
-        $offset =  ($page - 1) * $limit;
+        $offset =  ($page->getPageNumber() - 1) * $limit->getCop();
         return $this->getRepository()->findBy([
             'status' => [Status::Publicated, Status::Draft, Status::Deleted],
         ], [
             'created' => 'DESC'
-        ], $limit, $offset);
+        ], $limit->getCop(), $offset);
     }
 
     public function create(string $title, string $text): News

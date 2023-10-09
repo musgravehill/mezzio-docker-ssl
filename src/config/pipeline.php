@@ -23,7 +23,7 @@ use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     // The error handler should be the first (most outer) middleware to catch
     // all Exceptions.
-    $app->pipe(ProblemDetailsMiddleware::class);
+    //$app->pipe(ProblemDetailsMiddleware::class);
     $app->pipe(ServerUrlMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:

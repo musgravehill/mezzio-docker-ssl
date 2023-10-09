@@ -19,7 +19,7 @@ class RoutesDelegator
         $app = $callback();
 
         $app->get('/news', [
-            Handler\ListHandler::class,
+            $container->get(Handler\ListHandler::class), // ConfigProvider.php => Factory 
         ]);
 
         $app->post('/news', [

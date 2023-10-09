@@ -49,30 +49,34 @@ PS:
 Аутентификация и авторизация остаётся за рамками этого проекта.
 
 ## Предложения. 
+
 0. Validate user inputs!
 
 0.0. Error handlers
 
-1.  === Domain purity ===
+0.0.0 Добавить valueObjects. 
+
+1. Добавить DTO для передачи в\из handler. 
+
+2.  === Domain purity ===
 
     Отделить Infrastructure Doctrine Entity от Domain Entity. 
-
-    Сделать Domain\RepositoryInterface, а Infrastructure\Doctrine будет implements эти интерфейсы. 
-
-    Добавить valueObjects. 
-
-    Добавить DTO для передачи в\из handler. 
-
+    Сделать Domain\RepositoryInterface, а Infrastructure\Doctrine будет implements эти интерфейсы.  
     В Domain Entity сделать явные методы:  
-
         public static function new()
-
         public static function hydrateExisting()
-
         public function changeSomeBySomeAction()
+        5.  
 
+3. News\NewsService-> private function getRepository(): NewsRepository 
+        {
+            return $this->em->getRepository(News::class);
+        }
 
-2. set DEV mode to control all warn\err:
+        Can be moved to parent class with Late static binding. static::class() 
+
+## Commands. 
+1. set DEV mode to control all warn\err:
 
     docker container attach shell. 
 
@@ -80,25 +84,21 @@ PS:
     cd /var/www && composer development-disable  
     cd /var/www && composer development-status 
 
-3. News\Handler\CreateHandler   
+2. News\Handler\CreateHandler   
  
     API client send POST: https://x.not-real.ru/news
     x-www-form-urlencoded
     title
     text
 
-4. News\NewsService
+3. News\NewsService
 
     findAll: 'status' => [Status::Publicated, Status::Draft,],   to see created news (draft)
 
-5.  News\NewsService
-
-    TODO: 
-        private function getRepository(): NewsRepository
-        {
-            return $this->em->getRepository(News::class);
-        }
-
-        Can be moved to parent class with Late static binding. static::class() 
+4. cd /var/www && composer require --dev laminas/laminas-component-installer
+   cd /var/www && composer require laminas/laminas-validator
+   cd /var/www && composer require laminas/laminas-i18n-resources
+   cd /var/www && composer require laminas/laminas-inputfilter 
+   #inject dependencies to Mezzio config/config.php 
 
 

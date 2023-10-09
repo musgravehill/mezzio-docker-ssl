@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace News;
 use Mezzio\Application;
 use News\Contract\NewsServiceInterface;
+use News\Handler\ListHandler;
 
 /**
  * The configuration provider for the News module
@@ -42,7 +43,8 @@ class ConfigProvider
                 ],
             ],
             'factories'  => [
-                NewsServiceInterface::class => Factory\NewsServiceFactory::class
+                NewsServiceInterface::class => Factory\NewsServiceFactory::class,
+                ListHandler::class => Factory\ListHandlerFactory::class,
             ],
             
         ];

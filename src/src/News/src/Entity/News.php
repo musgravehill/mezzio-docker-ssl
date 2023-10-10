@@ -64,4 +64,12 @@ final class News
     {
         return $this->created;
     }
+
+    /**    
+     * @return Status
+     */
+    public function getStatus(): Status
+    {
+        return $this->status;
+    }
 }

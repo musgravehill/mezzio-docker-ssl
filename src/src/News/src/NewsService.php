@@ -6,11 +6,14 @@ namespace News;
 
 use Doctrine\ORM\EntityManagerInterface;
 use News\Contract\NewsServiceInterface;
+use News\Dto\NewsItemDto;
 use News\Dto\NewsListItemDto;
 use News\Entity\News;
 use News\Entity\Status;
 use News\Repository\NewsRepository;
 use News\ValueObject\CountOnPage;
+use News\ValueObject\NewsText;
+use News\ValueObject\NewsTitle;
 use News\ValueObject\PageNumber;
 use Ramsey\Uuid\UuidInterface;
 
@@ -51,12 +54,21 @@ class NewsService implements NewsServiceInterface
         return $res;
     }
 
-    public function create(string $title, string $text): News
+    /**
+     * @return NewsItemDto
+     */
+    public function create(NewsTitle $title, NewsText $text): NewsItemDto
     {
-        $news = new News($title, $text);
+        $news = new News($title->getTitle(), $text->getText());
         $this->em->persist($news);
         $this->em->flush();
-        return $news;
+        return new NewsItemDto(
+            id: strval($news->getId()),
+            title: strval($news->getTitle()),
+            text: strval($news->getText()),
+            created_at: strval($news->getCreated()->format('Y-m-d')),
+            status: strval($news->getStatus()->name),
+        );
     }
 
     public function delete(UuidInterface $id): void

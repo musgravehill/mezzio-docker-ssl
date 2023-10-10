@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 namespace News;
+
 use Mezzio\Application;
 use News\Contract\NewsServiceInterface;
+use News\Handler\CreateHandler;
 use News\Handler\ListHandler;
 
 /**
@@ -45,6 +47,7 @@ class ConfigProvider
             'factories'  => [
                 NewsServiceInterface::class => Factory\NewsServiceFactory::class,
                 ListHandler::class => Factory\ListHandlerFactory::class,
+                CreateHandler::class => Factory\CreateHandlerFactory::class,
             ],
             
         ];

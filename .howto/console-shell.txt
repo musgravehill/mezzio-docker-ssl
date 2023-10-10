@@ -1,0 +1,103 @@
+===========INSTALLATION=========================================================================
+vscode docker php_**** "Attach shell"
+terminal:
+
+cd /var/www/ddd
+
+cd /var/www/ddd && chmod -R 777 /var/www/ddd    
+cd /var/www/ddd && composer self-update
+cd /var/www/ddd && composer create-project mezzio-skeleton mezzio
+
+modular
+laminas-servicemanager
+laminas-router
+laminas-view
+err-handler=none 
+
+I add whoops-erorHandler manually later.
+I selected laminas-router, but installer set FastRoute + laminas-router. App use FastRoute. 
+I remove FastRoute from config, leave laminas-router in config. 
+Check, what router::class return from ServiceContainer.
+
+   #reads the composer.json file from the current directory, resolves the dependencies, and installs them into vendor.
+cd /var/www/ddd && composer install
+
+    ==laminas/laminas-component-installer== 
+        This repository contains the Composer plugin class `Laminas\ComponentInstaller\ComponentInstaller`,
+        which provides Composer event hooks for the events:
+            - post-package-install
+            - post-package-uninstall
+
+    extra.laminas` configuration in composer.json
+    laminas-component-installer get configs from components and inject to my config/config.php 
+
+    I use: A **config-provider** is for use with applications that utilize
+        [laminas-config-aggregator](https://github.com/laminas/laminas-config-aggregator)
+        (which may or may not be Mezzio applications). The class listed must be an
+        invokable that returns an array of configuration, and will be injected at the
+        top of:
+        - `config/config.php`
+
+ inject=1, yes
+
+
+
+========== DEV ===========================================================================
+vscode docker php_**** "Attach shell"
+terminal:
+
+cd /var/www/ddd && composer clear-config-cache   #clean mezzio cinfig cache in non-dev mode (in dev-mode the cache is disabled)     
+
+cd /var/www/ddd && composer development-enable  
+cd /var/www/ddd && composer development-disable  
+cd /var/www/ddd && composer development-status  
+
+cd /var/www/ddd && composer test #!!!!installer tests !remove! installed config files and templates before and after running the tests  
+
+============MEZZIO TOOLs CLI =========================================================================================================
+composer mezzio mezzio:module:create Pages                              #bad! 
+composer mezzio mezzio:module:register Pages                            #bad!  
+composer mezzio mezzio:handler:create "Pages\Handler\PageViewHandler"   #bad!  
+1. dependencies should be in Pages\ConfigProvider, not in config\autoload\tooling
+2. factory return handler:class,  not Psr\Http\Server\RequestHandlerInterface 
+
+
+================ COMPOSER ================================================
+cd /var/www/ddd && composer clear-cache                #clean composer 
+
+cd /var/www/ddd && composer update --no-scripts        #Skips execution of scripts defined in composer.json
+
+cd /var/www/ddd && composer dump-autoload --optimize   #update autoloader, without install\update packages
+    when add composer.json    
+        "autoload": {
+            "psr-4": {
+                "App\\": "src/src/",
+                "Page\\": "src/Page/src/"  //ADD something   
+
+
+cd /var/www/ddd && composer update --lock   #update .lock by edited .json, without install\update packages
+--dry-run                                   #Simulate the command without actually doing anything
+
+cd /var/www/ddd && composer require ramsey/uuid-doctrine  
+
+cd /var/www/ddd && composer require psr7-sessions/storageless 
+composer require "lcobucci/jwt:^4.1"
+composer require "lcobucci/clock:^2.0"
+composer require "dflydev/fig-cookies:^3.0"
+
+============= PHPUNIT ==============================================================================================
+/var/www/ddd/vendor/bin/phpunit --colors=always /var/www/ddd/test 
+
+
+============= PSALM ================================================================================================
+composer require --dev vimeo/psalm
+cd /var/www/ddd && /var/www/ddd/vendor/bin/psalm --init
+
+    # If you have a bunch of errors and you don't want to fix them all at once, 
+    # Psalm can hide errors in existing code; will generate a file containing the current HIDING errors.
+cd /var/www/ddd && /var/www/ddd/vendor/bin/psalm --set-baseline=psalm-baseline.xml
+
+    # This will remove fixed issues, but will not add new issues. 
+cd /var/www/ddd && /var/www/ddd/vendor/bin/psalm --update-baseline 
+
+cd /var/www/ddd && /var/www/ddd/vendor/bin/psalm --no-cache

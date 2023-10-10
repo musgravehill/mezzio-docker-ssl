@@ -1,0 +1,19 @@
+edit composer.json
+run docker
+connect to docker, attach shell 
+  cd /var/www/ddd && composer update --no-scripts        #Skips execution of scripts defined in composer.json
+
+
+// DoctrineORM\Service\EntityManagerFactory generate $em. See at DoctrineORM\ConfigProvider
+/** @var \Doctrine\ORM\EntityManager $entityManager */
+$entityManager = $this->container->get(\Doctrine\ORM\EntityManager::class); 
+
+
+cd /var/www/ddd/src/Infrastructure/Persistence/DoctrineORM && php CLI.php orm:schema-tool:update --force
+
+cd /var/www/ddd/src/Infrastructure/Persistence/DoctrineORM 
+php CLI.php orm:schema-tool:create
+php CLI.php orm:schema-tool:update --force
+
+php CLI.php orm:generate-proxies
+ 

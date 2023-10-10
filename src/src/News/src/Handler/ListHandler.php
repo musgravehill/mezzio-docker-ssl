@@ -27,8 +27,8 @@ class ListHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $queryParams = $request->getQueryParams();
-        $this->inputFilter->setData($queryParams);
+        $inputs = $request->getQueryParams();
+        $this->inputFilter->setData($inputs);
         if (!$this->inputFilter->isValid()) {
             $messages = $this->inputFilter->getMessages();
             //throw new InvalidArgumentException(message: json_encode($messages));

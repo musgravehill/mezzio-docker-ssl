@@ -14,10 +14,8 @@ use News\ValueObject\NewsTitle;
 use News\ValueObject\PageNumber;
 use Ramsey\Uuid\UuidInterface;
 
-
 interface NewsServiceInterface
 {
-
     public function getItem(IdUUIDv7 $id): ?NewsItemDto;
 
     /**
@@ -31,4 +29,7 @@ interface NewsServiceInterface
     public function create(NewsTitle $title, NewsText $text): ?NewsItemDto;
 
     public function delete(IdUUIDv7 $id): void;
+
+    //todo explicitMethodName to update item
+    //todo publish
 }

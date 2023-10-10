@@ -28,21 +28,6 @@
       <code>ConfigProvider</code>
     </UnusedClass>
   </file>
-  <file src="src/News/src/Contract/NewsServiceInterface.php">
-    <PossiblyUnusedMethod>
-      <code>create</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/News/src/Entity/News.php">
-    <UnusedProperty>
-      <code>$status</code>
-    </UnusedProperty>
-  </file>
-  <file src="src/News/src/Handler/CreateHandler.php">
-    <UnusedProperty>
-      <code>$newsService</code>
-    </UnusedProperty>
-  </file>
   <file src="src/News/src/Handler/DeleteHandler.php">
     <PossiblyUnusedMethod>
       <code>__construct</code>

@@ -69,7 +69,7 @@ DELETE /news/{id} - удалит новость
     # Psalm can hide errors in existing code; will generate a file containing the current HIDING errors.
     vendor/bin/psalm --set-baseline=psalm-baseline.xml
 
-    # This will remove fixed issues, but will not add new issues. 
+    # This will remove fixed issues, but will not add new issues. "Baseline for issue *** has 1 extra entry"
     vendor/bin/psalm --update-baseline 
 
     vendor/bin/psalm --no-cache

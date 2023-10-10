@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace News\Contract;
 
+use News\Dto\NewsListItemDto;
 use News\Entity\News;
 use News\ValueObject\CountOnPage;
 use News\ValueObject\PageNumber;

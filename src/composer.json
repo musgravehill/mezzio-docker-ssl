@@ -67,9 +67,10 @@
     },
     "require-dev": {
         "laminas/laminas-development-mode": "^3.3.0",
-        "phpunit/phpunit": "^9.5.11",
         "mezzio/mezzio-tooling": "^2.8",
-        "roave/security-advisories": "dev-master"
+        "phpunit/phpunit": "^9.5.11",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^5.15"
     },
     "autoload": {
         "psr-4": {

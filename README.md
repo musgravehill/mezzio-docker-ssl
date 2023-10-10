@@ -62,4 +62,14 @@ DELETE /news/{id} - удалит новость
 
    cd /var/www && composer clear-config-cache   #clean mezzio cinfig cache in non-dev mode (in dev-mode the cache is disabled)   
 
+5.  composer require --dev vimeo/psalm
+    cd /var/www && /var/www/vendor/bin/psalm --init
 
+    # If you have a bunch of errors and you don't want to fix them all at once, 
+    # Psalm can hide errors in existing code; will generate a file containing the current HIDING errors.
+    vendor/bin/psalm --set-baseline=psalm-baseline.xml
+
+    # This will remove fixed issues, but will not add new issues. 
+    vendor/bin/psalm --update-baseline 
+
+    vendor/bin/psalm --no-cache

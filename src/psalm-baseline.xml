@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+  <file src="src/App/src/ConfigProvider.php">
+    <UndefinedClass>
+      <code>Handler\HomePageHandler</code>
+      <code>Handler\HomePageHandlerFactory</code>
+    </UndefinedClass>
+    <UnusedClass>
+      <code>ConfigProvider</code>
+    </UnusedClass>
+  </file>
+  <file src="src/News/migrations/Version20230912064623.php">
+    <UnusedClass>
+      <code>Version20230912064623</code>
+    </UnusedClass>
+  </file>
+  <file src="src/News/src/AppDelegator.php">
+    <PossiblyUnusedParam>
+      <code>$container</code>
+      <code>$serviceName</code>
+    </PossiblyUnusedParam>
+    <UnusedClass>
+      <code>AppDelegator</code>
+    </UnusedClass>
+  </file>
+  <file src="src/News/src/ConfigProvider.php">
+    <UnusedClass>
+      <code>ConfigProvider</code>
+    </UnusedClass>
+  </file>
+  <file src="src/News/src/Contract/NewsServiceInterface.php">
+    <PossiblyUnusedMethod>
+      <code>create</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/Entity/News.php">
+    <UnusedProperty>
+      <code>$status</code>
+    </UnusedProperty>
+  </file>
+  <file src="src/News/src/Handler/CreateHandler.php">
+    <UnusedProperty>
+      <code>$newsService</code>
+    </UnusedProperty>
+  </file>
+  <file src="src/News/src/Handler/DeleteHandler.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/Handler/ListHandler.php">
+    <UnnecessaryVarAnnotation>
+      <code>NewsListItemDto[]</code>
+    </UnnecessaryVarAnnotation>
+  </file>
+  <file src="src/News/src/Handler/UpdateHandler.php">
+    <PossiblyUnusedMethod>
+      <code>__construct</code>
+    </PossiblyUnusedMethod>
+    <UnusedProperty>
+      <code>$newsService</code>
+    </UnusedProperty>
+    <UnusedVariable>
+      <code>$data</code>
+      <code>$id</code>
+    </UnusedVariable>
+  </file>
+  <file src="src/News/src/InputFilter/CreateInputFilter.php">
+    <MissingTemplateParam>
+      <code>CreateInputFilter</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="src/News/src/InputFilter/ListInputFilter.php">
+    <MissingTemplateParam>
+      <code>ListInputFilter</code>
+    </MissingTemplateParam>
+  </file>
+  <file src="src/News/src/RoutesDelegator.php">
+    <PossiblyUnusedParam>
+      <code>$container</code>
+      <code>$serviceName</code>
+    </PossiblyUnusedParam>
+  </file>
+  <file src="src/News/src/ValueObject/CountOnPage.php">
+    <PossiblyUnusedMethod>
+      <code>prepare</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/ValueObject/PageNumber.php">
+    <PossiblyUnusedMethod>
+      <code>prepare</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/ValueObject/ValueObjectAbstract.php">
+    <PossiblyUnusedReturnValue>
+      <code>bool</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/News/src/ValueObject/ValueObjectInterface.php">
+    <PossiblyUnusedReturnValue>
+      <code>bool</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+</files>

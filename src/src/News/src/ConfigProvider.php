@@ -7,6 +7,7 @@ namespace News;
 use Mezzio\Application;
 use News\Contract\NewsServiceInterface;
 use News\Handler\CreateHandler;
+use News\Handler\DeleteHandler;
 use News\Handler\ListHandler;
 
 /**
@@ -48,6 +49,7 @@ class ConfigProvider
                 NewsServiceInterface::class => Factory\NewsServiceFactory::class,
                 ListHandler::class => Factory\ListHandlerFactory::class,
                 CreateHandler::class => Factory\CreateHandlerFactory::class,
+                DeleteHandler::class => Factory\DeleteHandlerFactory::class,
             ],
             
         ];

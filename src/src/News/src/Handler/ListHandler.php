@@ -21,7 +21,7 @@ class ListHandler implements RequestHandlerInterface
 {
     public function __construct(
         private readonly NewsServiceInterface $newsService,
-        private readonly InputFilterInterface $inputFilter
+        private readonly InputFilterInterface $inputFilter,
     ) {
     }
 

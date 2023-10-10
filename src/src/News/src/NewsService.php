@@ -12,9 +12,12 @@ use News\Entity\News;
 use News\Entity\Status;
 use News\Repository\NewsRepository;
 use News\ValueObject\CountOnPage;
+use News\ValueObject\IdUUIDv7;
 use News\ValueObject\NewsText;
 use News\ValueObject\NewsTitle;
 use News\ValueObject\PageNumber;
+
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class NewsService implements NewsServiceInterface
@@ -24,9 +27,20 @@ class NewsService implements NewsServiceInterface
     ) {
     }
 
-    public function findById(UuidInterface $id): News
+    public function getItem(IdUUIDv7 $id): ?NewsItemDto
     {
-        return $this->getRepository()->findById($id);
+        $uuid = Uuid::fromString($id->getId());
+        $news = $this->getRepository()->findById($uuid);
+        if (is_null($news)) {
+            return null;
+        }
+        return new NewsItemDto(
+            id: strval($news->getId()),
+            title: strval($news->getTitle()),
+            text: strval($news->getText()),
+            created_at: strval($news->getCreated()->format('Y-m-d')),
+            status: strval($news->getStatus()->name),
+        );
     }
 
     /**
@@ -71,9 +85,12 @@ class NewsService implements NewsServiceInterface
         );
     }
 
-    public function delete(UuidInterface $id): void
+    public function delete(IdUUIDv7 $id): void
     {
         $news = $this->findById($id);
+        if (is_null($news)) {
+            return;
+        }
         $this->em->remove($news);
         $this->em->flush();
     }
@@ -81,5 +98,11 @@ class NewsService implements NewsServiceInterface
     private function getRepository(): NewsRepository
     {
         return $this->em->getRepository(News::class);
+    }
+
+    private function findById(IdUUIDv7 $id): ?News
+    {
+        $uuid = Uuid::fromString($id->getId());
+        return $this->getRepository()->findById($uuid);
     }
 }

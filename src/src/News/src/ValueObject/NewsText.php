@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace News\ValueObject;
 
-use News\ValueObject\ValueObjectAbstract;
-use News\ValueObject\ValueObjectInterface;
 use InvalidArgumentException;
 
 final class NewsText extends ValueObjectAbstract implements ValueObjectInterface

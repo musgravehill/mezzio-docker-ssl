@@ -24,6 +24,8 @@ DELETE /news/{id} - удалит новость
 
 1. Добавить DTO для передачи в\из handler. 
 
+2. UUID in Doctrine. Interface or explicit version? UuidV7?
+
 2.  === Domain purity ===
     Отделить Infrastructure Doctrine Entity от Domain Entity. 
     Сделать Domain\RepositoryInterface, а Infrastructure\Doctrine будет implements эти интерфейсы.  

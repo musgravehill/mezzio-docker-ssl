@@ -91,4 +91,6 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 
     vendor/bin/psalm --no-cache
 
-6. composer require mezzio/mezzio-problem-details    
+6. composer require mezzio/mezzio-problem-details    for prod&dev 
+
+7. composer require --dev php-middleware/php-debug-bar for dev

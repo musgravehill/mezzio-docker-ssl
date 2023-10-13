@@ -15,15 +15,23 @@ use Mezzio\Router\Middleware\RouteMiddleware;
 use Psr\Container\ContainerInterface;
 use Mezzio\ProblemDetails\ProblemDetailsMiddleware;
 use Mezzio\Helper\BodyParams\BodyParamsMiddleware;
+use PhpMiddleware\PhpDebugBar\PhpDebugBarMiddleware;
 
 /**
  * Setup middleware pipeline:
  */
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
+
+    // /src/config/development.config.php.dist   config.debug=1
+    if (!empty($container->get('config')['debug'])) {
+        $app->pipe(PhpDebugBarMiddleware::class);
+    }
+
     // The error handler should be the first (most outer) middleware to catch
     // all Exceptions.
-    //$app->pipe(ProblemDetailsMiddleware::class);
+    $app->pipe(ProblemDetailsMiddleware::class);     
+
     $app->pipe(ServerUrlMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
@@ -66,12 +74,13 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     //
     // - route-based authentication
     // - route-based validation
-    // - etc.
+    // - etc.    
 
     $app->pipe(BodyParamsMiddleware::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);
+
 
     // At this point, if no Response is returned by any middleware, the
     // NotFoundHandler kicks in; alternately, you can provide other fallback

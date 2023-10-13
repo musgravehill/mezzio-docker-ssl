@@ -35,15 +35,15 @@ class ListHandler implements RequestHandlerInterface
             $messages = $this->inputFilter->getMessages();
             //throw new InvalidArgumentException(message: json_encode($messages));
             //return new JsonResponse($messages, StatusCodeInterface::STATUS_BAD_REQUEST);
-            
+
             return $this->problemDetailsFactory->createResponse(
                 request: $request,
-                status: StatusCodeInterface::STATUS_OK,
-                detail: 'Domain transaction request failed validation',
-                title: '',
-                type: '',
+                status: StatusCodeInterface::STATUS_BAD_REQUEST,
+                detail: 'InputFilter failed validation',
+                title: 'InputFilter',
+                type: 'InputFilter validation',
                 additional: ['messages' => $messages],
-            );           
+            );
         }
 
         $page = new PageNumber($this->inputFilter->getValue('page'));

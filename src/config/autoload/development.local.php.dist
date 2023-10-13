@@ -12,4 +12,42 @@
 
 declare(strict_types=1);
 
-return [];
+use DebugBar\DataCollector\ConfigCollector;
+use DebugBar\DebugBar;
+use DebugBar\JavascriptRenderer;
+use PhpMiddleware\PhpDebugBar\ConfigCollectorFactory;
+use PhpMiddleware\PhpDebugBar\ConfigProvider;
+use PhpMiddleware\PhpDebugBar\JavascriptRendererFactory;
+use PhpMiddleware\PhpDebugBar\PhpDebugBarMiddleware;
+use PhpMiddleware\PhpDebugBar\PhpDebugBarMiddlewareFactory;
+use PhpMiddleware\PhpDebugBar\StandardDebugBarFactory;
+use Psr\Container\ContainerInterface;
+//
+/*
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\StreamFactory;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+*/
+
+return [
+    'dependencies' => [
+        'factories' => [
+            PhpDebugBarMiddleware::class => PhpDebugBarMiddlewareFactory::class,
+            ConfigCollector::class => ConfigCollectorFactory::class,
+            ConfigProvider::class => function(ContainerInterface $container) {
+                return $container->get('config');
+            },
+            DebugBar::class => StandardDebugBarFactory::class,
+            JavascriptRenderer::class => JavascriptRendererFactory::class,
+        ],
+        /*
+        'invokables' => [
+            ResponseFactoryInterface::class => ResponseFactory::class,
+            StreamFactoryInterface::class   => StreamFactory::class
+        ],
+        */
+    ]
+];
+
+//return [];

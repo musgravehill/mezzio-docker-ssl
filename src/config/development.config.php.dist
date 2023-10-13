@@ -28,4 +28,11 @@ use Laminas\ConfigAggregator\ConfigAggregator;
 return [
     'debug'                        => true,
     ConfigAggregator::ENABLE_CACHE => false,
+    'phpmiddleware'                => [
+        'phpdebugbar' => [
+            'collectors' => [],
+            'storage' => [],
+            'javascript_renderer' => [],
+        ],
+    ],
 ];

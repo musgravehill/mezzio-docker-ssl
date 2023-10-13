@@ -94,3 +94,14 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 6. composer require mezzio/mezzio-problem-details    for prod&dev 
 
 7. composer require --dev php-middleware/php-debug-bar for dev
+
+8. Xdebug 
+    In someFile.php add xdebug_info();  and see at resulr
+    .vscode/launch.json
+    src/dockerfiles/php-local.ini
+    .env APP_ENV=local
+    src/dockerfiles/Dockerfile   
+            COPY ./dockerfiles/php-${APP_ENV}.ini
+            $WITH_XDEBUG => see docker-compose.yml
+    VScode => Run and Debug, with PHPdebug ext installed      
+

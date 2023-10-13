@@ -25,12 +25,12 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
 
     // /src/config/development.config.php.dist   config.debug=1
     if (!empty($container->get('config')['debug'])) {
+        // The error handler should be the first (most outer) middleware to catch
+        // all Exceptions.
+        // $app->pipe(ProblemDetailsMiddleware::class);
+
         $app->pipe(PhpDebugBarMiddleware::class);
     }
-
-    // The error handler should be the first (most outer) middleware to catch
-    // all Exceptions.
-    $app->pipe(ProblemDetailsMiddleware::class);     
 
     $app->pipe(ServerUrlMiddleware::class);
 

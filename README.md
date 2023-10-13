@@ -103,5 +103,5 @@ Optionally, an instance key may be present, with a unique URI for the specific e
     src/dockerfiles/Dockerfile   
             COPY ./dockerfiles/php-${APP_ENV}.ini
             $WITH_XDEBUG => see docker-compose.yml
-    VScode => Run and Debug, with PHPdebug ext installed      
+    VScode => Run and Debug, with PHPdebug ext installed. Without devContainer. NO need devContainer.
 

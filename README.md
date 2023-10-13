@@ -24,6 +24,23 @@ DELETE /news/{id} - удалит новость
 
 2. UUID in Doctrine. Interface or explicit version? UuidV7?
 
+3. Use HTTP status codes to help convey error status.
+   Provide sufficient error detail to clients.
+
+   RFC 7807 provides a standard format for returning problem details from HTTP APIs. In particular, it specifies the following:
+
+Error responses MUST use standard HTTP status codes in the 400 or 500 range to detail the general category of error.
+Error responses will be of the Content-Type application/problem, appending a serialization format of either json or xml: application/problem+json, application/problem+xml.
+Error responses will have each of the following keys:
+detail, a human-readable description of the specific error.
+type, a unique URI for the general error type, generally pointing to human-readable documentation of that given type.
+title, a short, human-readable title for the general error type; the title should not change for given types.
+status, conveying the HTTP status code; this is so that all information is in one place, but also to correct for changes in the status code due to usage of proxy servers.
+Optionally, an instance key may be present, with a unique URI for the specific error; this will often point to an error log for that specific response.
+
+
+
+## additional
 2.  === Domain purity ===
     Отделить Infrastructure Doctrine Entity от Domain Entity. 
     Сделать Domain\RepositoryInterface, а Infrastructure\Doctrine будет implements эти интерфейсы.  
@@ -73,3 +90,5 @@ DELETE /news/{id} - удалит новость
     vendor/bin/psalm --update-baseline 
 
     vendor/bin/psalm --no-cache
+
+6. composer require mezzio/mezzio-problem-details    

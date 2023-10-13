@@ -59,7 +59,7 @@
         "mezzio/mezzio": "^3.7",
         "mezzio/mezzio-fastroute": "^3.0.3",
         "mezzio/mezzio-helpers": "^5.7",
-        "mezzio/mezzio-problem-details": "^1.11",
+        "mezzio/mezzio-problem-details": "^1.12",
         "ramsey/uuid": "^4.7",
         "ramsey/uuid-doctrine": "^2.0",
         "roave/psr-container-doctrine": "^3.0",

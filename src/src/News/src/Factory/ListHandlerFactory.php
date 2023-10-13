@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace News\Factory;
 
 use Laminas\InputFilter\InputFilterPluginManager;
+use Mezzio\ProblemDetails\ProblemDetailsResponseFactory;
 use News\Contract\NewsServiceInterface;
 use News\Handler\ListHandler;
 use News\InputFilter\ListInputFilter;
@@ -21,6 +22,7 @@ class ListHandlerFactory
         return new ListHandler(
             newsService: $container->get(NewsServiceInterface::class),
             inputFilter: $inputFilter,
+            problemDetailsFactory: $container->get(ProblemDetailsResponseFactory::class)
         );
     }
 }

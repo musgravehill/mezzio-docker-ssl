@@ -77,7 +77,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/App/src/",
-            "News\\": "src/News/src/"
+            "News\\": "src/News/src/",
+            "Oauth2\\": "src/Oauth2/src/"
         }
     },
     "autoload-dev": {

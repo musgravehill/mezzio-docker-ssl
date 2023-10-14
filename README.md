@@ -112,7 +112,24 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 10. OAuth 2.0     
     get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 
     AccessToken in JWT
-    
+
     composer require league/oauth2-server
+
+## COMPOSER
+cd /var/www/ddd && composer clear-cache                #clean composer 
+
+cd /var/www/ddd && composer update --no-scripts        #Skips execution of scripts defined in composer.json
+
+cd /var/www/ddd && composer dump-autoload --optimize   #update autoloader, without install\update packages
+    when add composer.json    
+        "autoload": {
+            "psr-4": {
+                "App\\": "src/src/",
+                "Page\\": "src/Page/src/"  //ADD something   
+
+
+cd /var/www/ddd && composer update --lock   #update .lock by edited .json, without install\update packages
+--dry-run                                   #Simulate the command without actually doing anything
+
 
 

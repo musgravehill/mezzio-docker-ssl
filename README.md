@@ -24,7 +24,9 @@ DELETE /news/{id} - удалит новость
 
 2. UUID in Doctrine. Interface or explicit version? UuidV7?
 
-3. Use HTTP status codes to help convey error status.
+3. composer require mezzio/mezzio-problem-details    for prod&dev 
+
+   Use HTTP status codes to help convey error status.
    Provide sufficient error detail to clients.
 
    RFC 7807 provides a standard format for returning problem details from HTTP APIs. In particular, it specifies the following:
@@ -104,4 +106,11 @@ Optionally, an instance key may be present, with a unique URI for the specific e
             COPY ./dockerfiles/php-${APP_ENV}.ini
             $WITH_XDEBUG => see docker-compose.yml
     VScode => Run and Debug, with PHPdebug ext installed. Without devContainer. NO need devContainer.
+
+11. Middleware session? To store request "get Authorization Code" until user login. 
+
+10. OAuth 2.0     
+    get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 
+    AcceessToken in JWT, 
+
 

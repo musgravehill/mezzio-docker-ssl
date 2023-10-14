@@ -106,6 +106,14 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 
     @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
 
+## ORM Doctrine
+
+    src/src/Oauth2/src/Entity/AuthCodeEntity.php
+    #[ORM\Entity(repositoryClass: AuthCodeRepository::class)]
+    Then:
+    em->getRepository(AuthCodeEntity::class); Return src/src/Oauth2/src/Repository/AuthCodeRepository.php
+    Thanks for php8 Attributes :) 
+
     src/config/autoload/doctrine.global.php    
     add laminas-cli commands migration:diff    
 

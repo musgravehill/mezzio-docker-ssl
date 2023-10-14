@@ -7,8 +7,12 @@ namespace Oauth2\Repository;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use Oauth2\Entity\AuthCodeEntity;
+use Doctrine\ORM\EntityRepository;
 
-class AuthCodeRepository implements AuthCodeRepositoryInterface
+/**
+ * @extends EntityRepository<AuthCodeEntity>
+ */
+class AuthCodeRepository extends EntityRepository implements AuthCodeRepositoryInterface  
 {
     /**
      * {@inheritdoc}
@@ -31,7 +35,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
      */
     public function isAuthCodeRevoked($codeId)
     {
-        return false; // The auth code has not been revoked
+        return false;  //todo expire dt?
     }
 
     /**

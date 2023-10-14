@@ -9,9 +9,10 @@ use League\OAuth2\Server\Entities\Traits\AuthCodeTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Oauth2\Repository\AuthCodeRepository;
 
-//#[ORM\Entity(repositoryClass: RefreshTokenRepository::class)]
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: AuthCodeRepository::class)]
+//#[ORM\Entity]
 #[ORM\Table(name: 'oauth2_auth_code')]
 class AuthCodeEntity implements AuthCodeEntityInterface
 {
@@ -36,6 +37,4 @@ class AuthCodeEntity implements AuthCodeEntityInterface
      * @var string|int|null
      */
     protected $userIdentifier;
-
-
 }

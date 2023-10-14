@@ -9,9 +9,10 @@ use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
 use Doctrine\ORM\Mapping as ORM;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
+use Oauth2\Repository\RefreshTokenRepository;
 
-//#[ORM\Entity(repositoryClass: RefreshTokenRepository::class)]
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: RefreshTokenRepository::class)]
+//#[ORM\Entity]
 #[ORM\Table(name: 'oauth2_refresh_token')]
 class RefreshTokenEntity implements RefreshTokenEntityInterface
 {

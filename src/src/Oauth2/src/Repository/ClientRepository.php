@@ -17,12 +17,20 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function getClientEntity($clientIdentifier)
     {
-        $client = new ClientEntity();
+        $client = new ClientEntity(
+            identifier: $clientIdentifier,
+            name: self::CLIENT_NAME,
+            redirectUri: self::REDIRECT_URI,
+            isConfidential: false,
+        );
 
+        /*
+        move this to __construct
         $client->setIdentifier($clientIdentifier);
         $client->setName(self::CLIENT_NAME);
         $client->setRedirectUri(self::REDIRECT_URI);
         $client->setConfidential();
+        */
 
         return $client;
     }

@@ -12,6 +12,34 @@ class ClientEntity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
 
+    /**
+     * @var string
+     */
+    protected $identifier;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var string|string[]
+     */
+    protected $redirectUri;
+
+    /**
+     * @var bool
+     */
+    protected $isConfidential = false;
+
+    public function __construct(string $identifier, string $name, string|array $redirectUri, bool $isConfidential)
+    {
+        $this->setIdentifier($identifier);
+        $this->setName($name);
+        $this->setRedirectUri($redirectUri);
+        $this->setConfidential($isConfidential);
+    }
+
     public function setName($name)
     {
         $this->name = $name;
@@ -22,8 +50,8 @@ class ClientEntity implements ClientEntityInterface
         $this->redirectUri = $uri;
     }
 
-    public function setConfidential()
+    public function setConfidential(bool $isConfidential)
     {
-        $this->isConfidential = true;
+        $this->isConfidential = $isConfidential;
     }
 }

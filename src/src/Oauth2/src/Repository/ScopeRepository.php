@@ -13,7 +13,7 @@ class ScopeRepository implements ScopeRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getScopeEntityByIdentifier($scopeIdentifier)
+    public function getScopeEntityByIdentifier($identifier)
     {
         $scopes = [
             'full' => [
@@ -21,12 +21,12 @@ class ScopeRepository implements ScopeRepositoryInterface
             ],
         ];
 
-        if (\array_key_exists($scopeIdentifier, $scopes) === false) {
+        if (\array_key_exists($identifier, $scopes) === false) {
             return;
         }
 
         $scope = new ScopeEntity(
-            identifier: $scopeIdentifier
+            identifier: $identifier
         );
         /*
             move to __constructor

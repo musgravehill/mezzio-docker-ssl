@@ -6,7 +6,9 @@ namespace Oauth2\Repository;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use OAuth2ServerExamples\Entities\UserEntity;
+use Oauth2\Entity\UserEntity;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -20,7 +22,7 @@ class UserRepository implements UserRepositoryInterface
         ClientEntityInterface $clientEntity
     ) {
         if ($username === 'alex' && $password === 'whisky') {
-            return new UserEntity();
+            return new UserEntity(Uuid::uuid4());
         }
 
         return;

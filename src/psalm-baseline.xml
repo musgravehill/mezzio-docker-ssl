@@ -28,9 +28,9 @@
       <code>ConfigProvider</code>
     </UnusedClass>
   </file>
-  <file src="src/News/src/Handler/DeleteHandler.php">
+  <file src="src/News/src/Contract/NewsServiceInterface.php">
     <PossiblyUnusedMethod>
-      <code>__construct</code>
+      <code>getItem</code>
     </PossiblyUnusedMethod>
   </file>
   <file src="src/News/src/Handler/ListHandler.php">
@@ -55,6 +55,11 @@
       <code>CreateInputFilter</code>
     </MissingTemplateParam>
   </file>
+  <file src="src/News/src/InputFilter/DeleteInputFilter.php">
+    <MissingTemplateParam>
+      <code>DeleteInputFilter</code>
+    </MissingTemplateParam>
+  </file>
   <file src="src/News/src/InputFilter/ListInputFilter.php">
     <MissingTemplateParam>
       <code>ListInputFilter</code>
@@ -67,6 +72,21 @@
     </PossiblyUnusedParam>
   </file>
   <file src="src/News/src/ValueObject/CountOnPage.php">
+    <PossiblyUnusedMethod>
+      <code>prepare</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/ValueObject/IdIntPositiveNullable.php">
+    <PossiblyUnusedMethod>
+      <code>prepare</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/ValueObject/IdInterface.php">
+    <PossiblyUnusedMethod>
+      <code>isEqualsTo</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/News/src/ValueObject/IdUUIDv7.php">
     <PossiblyUnusedMethod>
       <code>prepare</code>
     </PossiblyUnusedMethod>
@@ -85,5 +105,55 @@
     <PossiblyUnusedReturnValue>
       <code>bool</code>
     </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/Oauth2/src/Middleware/AuthorizationServerMiddleware.php">
+    <UnusedClass>
+      <code>AuthorizationServerMiddleware</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Middleware/ResourceServerMiddleware.php">
+    <UnusedClass>
+      <code>ResourceServerMiddleware</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/AccessTokenRepository.php">
+    <UnusedClass>
+      <code>AccessTokenRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/AuthCodeRepository.php">
+    <UnusedClass>
+      <code>AuthCodeRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/ClientRepository.php">
+    <UnusedClass>
+      <code>ClientRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/RefreshTokenRepository.php">
+    <UnusedClass>
+      <code>RefreshTokenRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/ScopeRepository.php">
+    <UnusedClass>
+      <code>ScopeRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Repository/UserRepository.php">
+    <UnusedClass>
+      <code>UserRepository</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/tests/ScopeEntityTest.php">
+    <UnusedClass>
+      <code>ScopeEntityTest</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/tests/UserEntityTest.php">
+    <UnusedClass>
+      <code>UserEntityTest</code>
+    </UnusedClass>
   </file>
 </files>

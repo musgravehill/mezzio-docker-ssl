@@ -13,8 +13,8 @@
     verbose="true"
     colors="true">
     <testsuites>
-        <testsuite name="default">
-            <directory suffix="Test.php">test</directory>
+        <testsuite name="default">            
+            <directory suffix="Test.php">src/Oauth2/tests</directory>
         </testsuite>
     </testsuites>
 

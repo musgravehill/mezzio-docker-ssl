@@ -115,6 +115,9 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 
     composer require league/oauth2-server
 
+    @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
+ 
+
 ## COMPOSER
 cd /var/www/ddd && composer clear-cache                #clean composer 
 
@@ -130,6 +133,11 @@ cd /var/www/ddd && composer dump-autoload --optimize   #update autoloader, witho
 
 cd /var/www/ddd && composer update --lock   #update .lock by edited .json, without install\update packages
 --dry-run                                   #Simulate the command without actually doing anything
+
+
+## TEST
+    src/phpunit.xml.dist
+    src/composer.json "autoload-dev":  "Oauth2\\tests\\": "src/Oauth2/tests" 
 
 
 

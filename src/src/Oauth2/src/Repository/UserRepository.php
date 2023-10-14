@@ -6,7 +6,7 @@ namespace Oauth2\Repository;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use Oauth2\Entity\UserEntity;
+use OAuth2ServerExamples\Entities\UserEntity;
 
 class UserRepository implements UserRepositoryInterface
 {

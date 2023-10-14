@@ -7,11 +7,12 @@ namespace Oauth2\Repository;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use Oauth2\Entity\ClientEntity;
 
+
+/**
+ * @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
+ */
 class ClientRepository implements ClientRepositoryInterface
 {
-    const CLIENT_NAME = 'My Awesome App';
-    const REDIRECT_URI = 'http://foo/bar';
-
     /**
      * {@inheritdoc}
      */
@@ -19,8 +20,8 @@ class ClientRepository implements ClientRepositoryInterface
     {
         $client = new ClientEntity(
             identifier: $clientIdentifier,
-            name: self::CLIENT_NAME,
-            redirectUri: self::REDIRECT_URI,
+            name: 'Client app ' . $clientIdentifier,
+            redirectUri: 'http://some.com',
             isConfidential: false,
         );
 
@@ -40,6 +41,9 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function validateClient($clientIdentifier, $clientSecret, $grantType)
     {
+        // you can check the $clientSecret if client is confidential 
+        // and works with $grantType
+        /*
         $clients = [
             'myawesomeapp' => [
                 'secret'          => \password_hash('abc123', PASSWORD_BCRYPT),
@@ -60,6 +64,7 @@ class ClientRepository implements ClientRepositoryInterface
         ) {
             return false;
         }
+        */
 
         return true;
     }

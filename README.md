@@ -111,6 +111,8 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 
 10. OAuth 2.0     
     get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 
-    AcceessToken in JWT, 
+    AccessToken in JWT
+    
+    composer require league/oauth2-server
 
 

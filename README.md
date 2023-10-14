@@ -106,7 +106,10 @@ Optionally, an instance key may be present, with a unique URI for the specific e
 
     @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
 
-    src/config/autoload/doctrine.global.php        
+    src/config/autoload/doctrine.global.php    
+    add laminas-cli commands migration:diff    
+
+        composer mezzio migration:diff  
         composer mezzio migration:generate 
         composer mezzio migration:up 
         composer mezzio migration:execute 

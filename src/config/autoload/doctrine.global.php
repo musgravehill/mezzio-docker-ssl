@@ -115,11 +115,12 @@ return [
     ],
     'laminas-cli' => [
         'commands' => [
+            'migration:diff'     => Command\DiffCommand::class,
             'migration:generate' => Command\GenerateCommand::class,
             'migration:up'       => Command\MigrateCommand::class,
             'migration:execute'  => Command\ExecuteCommand::class,
             'migration:down'     => Command\RollupCommand::class,
-            'migration:status'   => Command\StatusCommand::class,
+            'migration:status'   => Command\StatusCommand::class,                         
         ]
     ]
 ];

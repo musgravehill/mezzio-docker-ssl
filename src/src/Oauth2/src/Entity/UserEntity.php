@@ -11,13 +11,13 @@ use Ramsey\Uuid\UuidInterface;
 class UserEntity implements UserEntityInterface
 {
     /**
-     * @param UuidInterface $identifier 
+     * @param string|int|null
      */
-    public function __construct(private readonly UuidInterface $identifier)
+    public function __construct(private readonly string|int|null $identifier)
     {
     }
 
-    public function getIdentifier(): mixed
+    public function getIdentifier(): string|int|null
     {
         return $this->identifier;
     }

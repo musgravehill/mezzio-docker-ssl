@@ -105,6 +105,13 @@ Optionally, an instance key may be present, with a unique URI for the specific e
     composer require league/oauth2-server
 
     @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
+
+    src/config/autoload/doctrine.global.php        
+        composer mezzio migration:generate 
+        composer mezzio migration:up 
+        composer mezzio migration:execute 
+        composer mezzio migration:down 
+        composer mezzio migration:status
  
 
 ## COMPOSER

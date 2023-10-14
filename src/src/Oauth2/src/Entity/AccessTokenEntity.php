@@ -16,31 +16,6 @@ class AccessTokenEntity implements AccessTokenEntityInterface
 {
     use AccessTokenTrait, TokenEntityTrait, EntityTrait;
 
-    /**
-     * @var string
-     */
-    protected $identifier;
-
-    /**
-     * @var ScopeEntityInterface[]
-     */
-    protected $scopes = [];
-
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $expiryDateTime;
-
-    /**
-     * @var string|int|null
-     */
-    protected $userIdentifier;
-
-    /**
-     * @var ClientEntityInterface
-     */
-    protected $client;
-
     public function __construct(ClientEntityInterface $clientEntity, array $scopes, string|int|null $userIdentifier = null)
     {
         $this->setClient($clientEntity);

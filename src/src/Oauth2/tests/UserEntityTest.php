@@ -12,7 +12,7 @@ final class UserEntityTest extends TestCase
 {
     public function testCreate(): void
     {
-        $identifier = Uuid::uuid4();
+        $identifier = Uuid::uuid4()->toString();
         $user = new UserEntity($identifier);
         $this->assertEquals($identifier, $user->getIdentifier());
     }

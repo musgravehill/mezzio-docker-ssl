@@ -13,15 +13,21 @@ use Oauth2\Entity\ClientEntity;
  */
 class ClientRepository implements ClientRepositoryInterface
 {
+    // simple 1 client harcoded here 
+    const clientIdentifier = '09aac9b1-f9e1-44b4-9381-9255451a3ad0';
+
     /**
      * {@inheritdoc}
      */
     public function getClientEntity($clientIdentifier)
     {
+        if (self::clientIdentifier <> $clientIdentifier) {
+            return null;
+        }
         $client = new ClientEntity(
             identifier: $clientIdentifier,
-            name: 'Client app ' . $clientIdentifier,
-            redirectUri: 'http://some.com',
+            name: 'Client app ' . self::clientIdentifier,
+            redirectUri: getenv('OAUTH2_REDIR_URI'),
             isConfidential: false,
         );
 
@@ -41,6 +47,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function validateClient($clientIdentifier, $clientSecret, $grantType)
     {
+        if (is_null($this->getClientEntity($clientIdentifier))) {
+            return false;
+        }
+        
         // you can check the $clientSecret if client is confidential 
         // and works with $grantType
         /*

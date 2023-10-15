@@ -34,11 +34,13 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-               // Handler\PingHandler::class => (static function() { return new Handler\PingHandler(); }),
+                // Handler\PingHandler::class => (static function() { return new Handler\PingHandler(); }),
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
-                Handler\PingHandler::class => function($container) { return new Handler\PingHandler($container); },
+                Handler\PingHandler::class => static function ($container) {
+                    return new Handler\PingHandler($container);
+                },
             ],
         ];
     }

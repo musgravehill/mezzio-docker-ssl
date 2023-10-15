@@ -10,7 +10,9 @@ use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Mezzio\Application;
 use Oauth2\Factory\AuthCodeRepositoryFactory;
 use Oauth2\Factory\AuthorizationServerFactory;
+use Oauth2\Factory\AuthorizationServerMiddlewareFactory;
 use Oauth2\Factory\RefreshTokenRepositoryFactory;
+use Oauth2\Middleware\AuthorizationServerMiddleware;
 
 class ConfigProvider
 {
@@ -36,11 +38,16 @@ class ConfigProvider
     {
         return [
             'invokables' => [],
-            'delegators' => [],
+            'delegators' => [
+                Application::class => [
+                    RoutesDelegator::class,                    
+                ],
+            ],
             'factories'  => [
                 AuthCodeRepositoryInterface::class => AuthCodeRepositoryFactory::class,
                 RefreshTokenRepositoryInterface::class => RefreshTokenRepositoryFactory::class,
                 AuthorizationServer::class => AuthorizationServerFactory::class,
+                AuthorizationServerMiddleware::class => AuthorizationServerMiddlewareFactory::class,
             ],
 
         ];

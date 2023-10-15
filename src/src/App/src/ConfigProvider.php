@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App;
 
+use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
+
 /**
  * The configuration provider for the App module
  *
@@ -32,10 +34,11 @@ class ConfigProvider
     {
         return [
             'invokables' => [
-                Handler\PingHandler::class => Handler\PingHandler::class,
+               // Handler\PingHandler::class => (static function() { return new Handler\PingHandler(); }),
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
+                Handler\PingHandler::class => function($container) { return new Handler\PingHandler($container); },
             ],
         ];
     }

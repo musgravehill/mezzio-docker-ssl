@@ -106,6 +106,21 @@
       <code>bool</code>
     </PossiblyUnusedReturnValue>
   </file>
+  <file src="src/Oauth2/migrations/Version20231014173201.php">
+    <UnusedClass>
+      <code>Version20231014173201</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/ConfigProvider.php">
+    <UnusedClass>
+      <code>ConfigProvider</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/Entity/RefreshTokenEntity.php">
+    <UnusedProperty>
+      <code>$userIdentifier</code>
+    </UnusedProperty>
+  </file>
   <file src="src/Oauth2/src/Middleware/AuthorizationServerMiddleware.php">
     <UnusedClass>
       <code>AuthorizationServerMiddleware</code>
@@ -121,19 +136,9 @@
       <code>AccessTokenRepository</code>
     </UnusedClass>
   </file>
-  <file src="src/Oauth2/src/Repository/AuthCodeRepository.php">
-    <UnusedClass>
-      <code>AuthCodeRepository</code>
-    </UnusedClass>
-  </file>
   <file src="src/Oauth2/src/Repository/ClientRepository.php">
     <UnusedClass>
       <code>ClientRepository</code>
-    </UnusedClass>
-  </file>
-  <file src="src/Oauth2/src/Repository/RefreshTokenRepository.php">
-    <UnusedClass>
-      <code>RefreshTokenRepository</code>
     </UnusedClass>
   </file>
   <file src="src/Oauth2/src/Repository/ScopeRepository.php">

@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Oauth2;
 
+use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
+use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Mezzio\Application;
+use Oauth2\Factory\AuthCodeRepositoryFactory;
+use Oauth2\Factory\RefreshTokenRepositoryFactory;
 
 class ConfigProvider
 {
@@ -30,7 +34,10 @@ class ConfigProvider
         return [
             'invokables' => [],
             'delegators' => [],
-            'factories'  => [],
+            'factories'  => [
+                AuthCodeRepositoryInterface::class => AuthCodeRepositoryFactory::class,
+                RefreshTokenRepositoryInterface::class => RefreshTokenRepositoryFactory::class,
+            ],
 
         ];
     }

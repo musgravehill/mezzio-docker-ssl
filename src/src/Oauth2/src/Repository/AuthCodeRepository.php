@@ -4,22 +4,43 @@ declare(strict_types=1);
 
 namespace Oauth2\Repository;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
+use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use Oauth2\Entity\AuthCodeEntity;
-use Doctrine\ORM\EntityRepository;
 
-/**
- * @extends EntityRepository<AuthCodeEntity>
- */
-class AuthCodeRepository extends EntityRepository implements AuthCodeRepositoryInterface  
+/*
+    no way! $em->getRepository(AuthCodeEntity::class) return NOT AuthCodeRepositoryInterface, return Doctrine\ORM\EntityRepository 
+    use Doctrine\ORM\EntityRepository;
+    @extends EntityRepository<AuthCodeEntity> 
+    extends EntityRepository
+*/
+
+class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
+
+    /**
+     * @param EntityRepository<AuthCodeEntity> $repo  
+     */
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly EntityRepository $repo
+    ) {
+    }
+
     /**
      * {@inheritdoc}
      */
     public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity)
     {
-        // Some logic to persist the auth code to a database
+        try {
+            $this->em->persist($authCodeEntity);
+            $this->em->flush();
+        } catch (\Throwable $th) {
+            throw UniqueTokenIdentifierConstraintViolationException::create();
+        }
     }
 
     /**
@@ -27,7 +48,12 @@ class AuthCodeRepository extends EntityRepository implements AuthCodeRepositoryI
      */
     public function revokeAuthCode($codeId)
     {
-        // Some logic to revoke the auth code in a database
+        $authCodeEntity = $this->repo->find($codeId);
+        if(is_null($authCodeEntity)){
+            return;
+        }
+        $this->em->remove($authCodeEntity);
+        $this->em->flush();
     }
 
     /**
@@ -35,7 +61,7 @@ class AuthCodeRepository extends EntityRepository implements AuthCodeRepositoryI
      */
     public function isAuthCodeRevoked($codeId)
     {
-        return false;  //todo expire dt?
+        return is_null($this->repo->find($codeId));
     }
 
     /**
@@ -44,5 +70,10 @@ class AuthCodeRepository extends EntityRepository implements AuthCodeRepositoryI
     public function getNewAuthCode()
     {
         return new AuthCodeEntity();
+    }
+
+    public function getAuthCodes()
+    {
+        return $this->repo->findAll();
     }
 }

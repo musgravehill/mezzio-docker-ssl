@@ -21,8 +21,8 @@ class UserRepository implements UserRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity
     ) {
-        if ($username === 'alex' && $password === 'whisky') {
-            return new UserEntity(Uuid::uuid4());
+        if ($username === 'Goran' && $password === 'Bregovic') {
+            return new UserEntity(Uuid::fromString('ebe474a0-45b9-40ef-ad96-dde9bca5e19e')->toString());
         }
 
         return;

@@ -4,18 +4,42 @@ declare(strict_types=1);
 
 namespace Oauth2\Repository;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
+use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Oauth2\Entity\RefreshTokenEntity;
 
+/*
+    no way! $em->getRepository(RefreshTokenEntity::class) return NOT RefreshTokenRepositoryInterface, return Doctrine\ORM\EntityRepository 
+    use Doctrine\ORM\EntityRepository;
+    @extends EntityRepository<RefreshTokenEntity> 
+    extends EntityRepository
+*/
+
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
+    /**
+     * @param EntityRepository<RefreshTokenEntity> $repo  
+     */
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly EntityRepository $repo
+    ) {
+    }
+
     /**
      * {@inheritdoc}
      */
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
-        // Some logic to persist the refresh token in a database
+        try {
+            $this->em->persist($refreshTokenEntity);
+            $this->em->flush();
+        } catch (\Throwable $th) {
+            throw UniqueTokenIdentifierConstraintViolationException::create();
+        }
     }
 
     /**
@@ -23,7 +47,12 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
      */
     public function revokeRefreshToken($tokenId)
     {
-        // Some logic to revoke the refresh token in a database
+        $refreshTokenEntity = $this->repo->find($tokenId);
+        if (is_null($refreshTokenEntity)) {
+            return;
+        }
+        $this->em->remove($refreshTokenEntity);
+        $this->em->flush();
     }
 
     /**
@@ -31,7 +60,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
      */
     public function isRefreshTokenRevoked($tokenId)
     {
-        return false; // The refresh token has not been revoked
+        return is_null($this->repo->find($tokenId));
     }
 
     /**

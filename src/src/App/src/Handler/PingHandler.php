@@ -45,7 +45,7 @@ class PingHandler implements RequestHandlerInterface
         $AuthCodeRepository->persistNewAuthCode($AuthCode);
         */
 
-        // print_r($AuthCodeRepository->getAuthCodes());
+         print_r($AuthCodeRepository->getAuthCodes());
 
         /**
          * @var RefreshTokenRepository|RefreshTokenRepositoryInterface $RefreshTokenRepository

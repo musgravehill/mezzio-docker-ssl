@@ -7,6 +7,7 @@ namespace Oauth2\Middleware;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Middleware\AuthorizationServerMiddleware as LeagueAuthorizationServerMiddleware;
+use Oauth2\Entity\UserEntity;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -51,7 +52,18 @@ class AuthorizationServerMiddleware implements MiddlewareInterface
 
             // The next handler must take care of providing the
             // authenticated user and the approval
-            $authRequest->setAuthorizationApproved(false);
+            //$authRequest->setAuthorizationApproved(false);
+
+            // Once the user has logged in set the user on the AuthorizationRequest
+            $authRequest->setUser(new UserEntity('09aac9b1-f9e1-44b4-9381-9255451a3ad0')); // an instance of UserEntityInterface
+
+            $authRequest->setAuthorizationApproved(true);
+            
+            return $this->authorizationServer->completeAuthorizationRequest(
+                $authRequest,
+                $this->responseFactory->createResponse()
+            );
+
 
             return $handler->handle($request->withAttribute(AuthorizationRequest::class, $authRequest));
         } catch (OAuthServerException $exception) {

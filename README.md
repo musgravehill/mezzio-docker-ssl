@@ -67,6 +67,21 @@ DELETE /news/{id} - удалит новость
     findAll: 'status' => [Status::Publicated, Status::Draft,],   to see created news (draft)    
 
     ===OAuth 2.0     
+        composer require league/oauth2-server   
+        composer require defuse/php-encryption
+
+        1. generate private.key, public.key, encryption.key
+        cd /var/www/src/Oauth2/key 
+        openssl genrsa -out private.key 2048
+        openssl rsa -in private.key -pubout -out public.key        
+
+        /var/www/vendor/bin/generate-defuse-key
+
+        def00000650ec376ed0da2b2b9567d81e297422e0fb4138f1dfef22c4339daae1fa1f5e9bc3cba03a942ac7ccc04b5cc5d6cca953939f0cb7cdbca9542d3cb8dd2d316b3
+
+
+
+
         get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 
         AccessToken in JWT    
 
@@ -94,7 +109,7 @@ DELETE /news/{id} - удалит новость
 
     composer require --dev php-middleware/php-debug-bar     for dev
 
-    composer require league/oauth2-server   
+    
 
 ## Xdebug 
     In someFile.php add xdebug_info();  and see at resulr

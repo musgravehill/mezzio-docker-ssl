@@ -7,6 +7,7 @@ namespace App\Handler;
 use DateInterval;
 use DateTimeImmutable;
 use Laminas\Diactoros\Response\JsonResponse;
+use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Oauth2\Entity\ClientEntity;
@@ -16,17 +17,22 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use UnexpectedValueException;
 
 use function time;
 
 class PingHandler implements RequestHandlerInterface
 {
-    public function __construct(ContainerInterface $container)
+    public function __construct(private readonly ContainerInterface $container)
+    {
+    }
+
+    private function oauth2()
     {
         /**
          * @var AuthCodeRepository|AuthCodeRepositoryInterface $AuthCodeRepository
          */
-        $AuthCodeRepository = $container->get(AuthCodeRepositoryInterface::class);
+        $AuthCodeRepository = $this->container->get(AuthCodeRepositoryInterface::class);
 
         /*
         $AuthCode = $AuthCodeRepository->getNewAuthCode();
@@ -39,20 +45,22 @@ class PingHandler implements RequestHandlerInterface
         $AuthCodeRepository->persistNewAuthCode($AuthCode);
         */
 
-        print_r($AuthCodeRepository->getAuthCodes());
-
-
+        // print_r($AuthCodeRepository->getAuthCodes());
 
         /**
          * @var RefreshTokenRepository|RefreshTokenRepositoryInterface $RefreshTokenRepository
          */
-        $RefreshTokenRepository = $container->get(RefreshTokenRepositoryInterface::class);
+        $RefreshTokenRepository = $this->container->get(RefreshTokenRepositoryInterface::class);
+
+        $AuthorizationServer =  $this->container->get(AuthorizationServer::class);
     }
 
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        //$AuthCodeRepository = new AuthCodeRepository()
+
+        $this->oauth2();
+
         return new JsonResponse(['ack' => time()]);
     }
 }

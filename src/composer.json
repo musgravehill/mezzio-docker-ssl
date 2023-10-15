@@ -44,6 +44,7 @@
     "require": {
         "php": "~8.2",
         "composer/package-versions-deprecated": "^1.10.99",
+        "defuse/php-encryption": "^2.4",
         "doctrine/cache": "^1.13",
         "doctrine/migrations": "^3.5",
         "doctrine/orm": "^2.16",

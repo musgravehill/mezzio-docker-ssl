@@ -21,7 +21,7 @@ class ScopeRepository implements ScopeRepositoryInterface
             ],
         ];
 
-        if (\array_key_exists($identifier, $scopes) === false) {
+        if (\array_key_exists($identifier, $scopes) === false) {            
             return;
         }
 

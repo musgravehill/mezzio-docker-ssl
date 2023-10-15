@@ -21,9 +21,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function getClientEntity($clientIdentifier)
     {
-        if (self::clientIdentifier <> $clientIdentifier) {
+        if (self::clientIdentifier <> $clientIdentifier) {            
             return null;
         }
+        
         $client = new ClientEntity(
             identifier: $clientIdentifier,
             name: 'Client app ' . self::clientIdentifier,
@@ -47,7 +48,7 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function validateClient($clientIdentifier, $clientSecret, $grantType)
     {
-        if (is_null($this->getClientEntity($clientIdentifier))) {
+        if (is_null($this->getClientEntity($clientIdentifier))) {            
             return false;
         }
         

@@ -77,7 +77,7 @@ DELETE /news/{id} - удалит новость
 
         /var/www/vendor/bin/generate-defuse-key
 
-        def00000650ec376ed0da2b2b9567d81e297422e0fb4138f1dfef22c4339daae1fa1f5e9bc3cba03a942ac7ccc04b5cc5d6cca953939f0cb7cdbca9542d3cb8dd2d316b3
+        2. https://x.not-real.ru/authorize?response_type=code&client_id=09aac9b1-f9e1-44b4-9381-9255451a3ad0&scope=full&redirect_uri=https://x.not-real.ru&code_challenge=u102e6FKcICkl9LJhXKxB1CAvWrxbMWFX_JbFQH54jQ&code_challenge_method=plain 
 
 
 

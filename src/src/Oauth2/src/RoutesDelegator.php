@@ -18,7 +18,7 @@ class RoutesDelegator
         /** @var Application $app */
         $app = $callback();
 
-        $app->post('/authorize', [
+        $app->get('/authorize', [
             AuthorizationServerMiddleware::class
         ]);
 

@@ -37,7 +37,33 @@
     composer development-enable  
     composer development-disable  
     composer development-status  
-    composer clear-config-cache   #clean mezzio config cache in non-dev mode (in dev-mode the cache is disabled)       
+    composer clear-config-cache   #clean mezzio config cache in non-dev mode (in dev-mode the cache is disabled)  
+
+## Event
+    EventDispatcher component implements the Mediator and Observer design patterns.       
+
+## DoublePassMiddleware
+    1. Decorating via factory
+    2. Decorating via delegator:  
+    'delegators' => [
+        SomeDoublePassMiddleware::class => [
+            DoublePassMiddlewareDelegator::class,
+            ],
+    ],...
+
+    use Psr\Container\ContainerInterface;
+    use Psr\Http\Message\ResponseInterface;
+    use function Laminas\Stratigility\doublePassMiddleware;
+    class DoublePassMiddlewareDelegator
+    {
+        public function __invoke(Container $container, string $serviceName, callable $callback)
+        {
+            return doublePassMiddleware(
+                $callback(),
+                ($container->get(ResponseInterface::class))()
+            );
+        }
+    }   
 
 ## Xdebug 
     In someFile.php add xdebug_info();  and see at resulr

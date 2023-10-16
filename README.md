@@ -12,6 +12,23 @@
     Unit tests
     Xdebug
     Docker 
+    Coding standard PSR-12 cs-check, cs-fix
+
+## PSR
+    1	Basic Coding Standard	
+    -3	Logger Interface	
+    4	Autoloading Standard	
+    -6	Caching Interface	
+    7	HTTP Message Interface	
+    11	Container Interface	
+    12	Extended Coding Style 
+    -13	Hypermedia Links	
+    -14	Event Dispatcher	
+    15	HTTP Handlers	
+    -16	Simple Cache	
+    17	HTTP Factories	
+    -18	HTTP Client	
+    20	Clock
 
 ## Commands 
     set DEV mode to control all warn\err:

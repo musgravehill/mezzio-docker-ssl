@@ -51,7 +51,7 @@ class RoutesDelegator
              * ask the User to approve the client and the scopes requested
              */
             // $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface          
-            // $authRequest->setAuthorizationApproved(true);
+            // $authRequest->setAuthorizationApproved(true); or False if user decline (not approve)
             AuthorizationUserMiddleware::class,
 
             /**

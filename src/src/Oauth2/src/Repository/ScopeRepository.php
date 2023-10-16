@@ -21,7 +21,7 @@ class ScopeRepository implements ScopeRepositoryInterface
             ],
         ];
 
-        if (\array_key_exists($identifier, $scopes) === false) {            
+        if (\array_key_exists($identifier, $scopes) === false) {
             return;
         }
 
@@ -49,7 +49,7 @@ class ScopeRepository implements ScopeRepositoryInterface
         if ((int) $userIdentifier === 1) {
             $scope = new ScopeEntity();
             $scope->setIdentifier('email');
-            $scopes[] = $scope;  
+            $scopes[] = $scope;
             // or remove some scopes from array
         }
         */

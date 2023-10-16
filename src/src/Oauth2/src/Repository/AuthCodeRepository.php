@@ -12,17 +12,16 @@ use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use Oauth2\Entity\AuthCodeEntity;
 
 /*
-    no way! $em->getRepository(AuthCodeEntity::class) return NOT AuthCodeRepositoryInterface, return Doctrine\ORM\EntityRepository 
+    no way! $em->getRepository(AuthCodeEntity::class) return NOT AuthCodeRepositoryInterface, return Doctrine\ORM\EntityRepository
     use Doctrine\ORM\EntityRepository;
-    @extends EntityRepository<AuthCodeEntity> 
+    @extends EntityRepository<AuthCodeEntity>
     extends EntityRepository
 */
 
 class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
-
     /**
-     * @param EntityRepository<AuthCodeEntity> $repo  
+     * @param EntityRepository<AuthCodeEntity> $repo
      */
     public function __construct(
         private readonly EntityManagerInterface $em,
@@ -49,7 +48,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function revokeAuthCode($codeId)
     {
         $authCodeEntity = $this->repo->find($codeId);
-        if(is_null($authCodeEntity)){
+        if (is_null($authCodeEntity)) {
             return;
         }
         $this->em->remove($authCodeEntity);

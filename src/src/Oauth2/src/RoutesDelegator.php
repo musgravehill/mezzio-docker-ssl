@@ -21,19 +21,19 @@ class RoutesDelegator
         $app = $callback();
 
         $app->route('/oauth2/authorize', [
-            // SessionMiddleware? 
+            // SessionMiddleware?
 
            AuthorizationEntrypointMiddleware::class,
 
             /**
-             * @todo 
+             * @todo
              * login User
              * ask the User to approve the client and the scopes requested
              */
-            // $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface          
+            // $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface
             // $authRequest->setAuthorizationApproved(true); or False if user decline (not approve)
             // AuthorizationUserMiddleware::class,
-            
+
             AuthorizationEndpointMiddleware::class,
 
         ], ['GET', 'POST']);

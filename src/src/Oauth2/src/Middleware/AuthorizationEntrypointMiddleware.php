@@ -18,7 +18,7 @@ use Throwable;
 
 class AuthorizationEntrypointMiddleware implements MiddlewareInterface
 {
-    public function  __construct(
+    public function __construct(
         private readonly AuthorizationServer $authorizationServer,
         private readonly ResponseFactoryInterface $responseFactory,
     ) {
@@ -30,20 +30,20 @@ class AuthorizationEntrypointMiddleware implements MiddlewareInterface
         /*
         // Validate the HTTP request and return an AuthorizationRequest object.
         $authRequest = $server->validateAuthorizationRequest($request);
-        
+
         // The auth request object can be serialized and saved into a user's session.
         // You will probably want to redirect the user at this point to a login endpoint.
-        
+
         // Once the user has logged in set the user on the AuthorizationRequest
         $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface
-        
+
         // At this point you should redirect the user to an authorization page.
         // This form will ask the user to approve the client and the scopes requested.
-        
+
         // Once the user has approved or denied the client update the status
         // (true = approved, false = denied)
         $authRequest->setAuthorizationApproved(true);
-        
+
         // Return the HTTP redirect response
         return $server->completeAuthorizationRequest($authRequest, $response);
 
@@ -53,14 +53,14 @@ class AuthorizationEntrypointMiddleware implements MiddlewareInterface
 
             // todo start
             // The next handler must take care of providing the
-            // authenticate user, setUser and the approval               
+            // authenticate user, setUser and the approval
             $authRequest->setUser(new UserEntity('ebe474a0-45b9-40ef-ad96-dde9bca5e19e')); // an instance of UserEntityInterface
             $authRequest->setAuthorizationApproved(true);
-            // todo end          
+            // todo end
 
             // add payload '$authRequest' for next usage
             $request = $request->withAttribute(AuthorizationRequest::class, $authRequest);
-                        
+
             return $handler->handle($request);
         } catch (OAuthServerException $exception) {
             $response = $this->responseFactory->createResponse();

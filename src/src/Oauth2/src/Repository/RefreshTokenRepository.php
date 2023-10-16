@@ -12,16 +12,16 @@ use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Oauth2\Entity\RefreshTokenEntity;
 
 /*
-    no way! $em->getRepository(RefreshTokenEntity::class) return NOT RefreshTokenRepositoryInterface, return Doctrine\ORM\EntityRepository 
+    no way! $em->getRepository(RefreshTokenEntity::class) return NOT RefreshTokenRepositoryInterface, return Doctrine\ORM\EntityRepository
     use Doctrine\ORM\EntityRepository;
-    @extends EntityRepository<RefreshTokenEntity> 
+    @extends EntityRepository<RefreshTokenEntity>
     extends EntityRepository
 */
 
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     /**
-     * @param EntityRepository<RefreshTokenEntity> $repo  
+     * @param EntityRepository<RefreshTokenEntity> $repo
      */
     public function __construct(
         private readonly EntityManagerInterface $em,

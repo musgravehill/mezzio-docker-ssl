@@ -7,7 +7,6 @@ namespace Oauth2\Repository;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use Oauth2\Entity\ClientEntity;
 
-
 /**
  * @todo ClientRepository: pull client from .env or config for: prod, dev, test, local envs
  */

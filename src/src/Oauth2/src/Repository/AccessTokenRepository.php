@@ -16,9 +16,9 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
-        // no persist. We give the JWT to the client. And we completely trust the JWT. 
-        // External services do not validate the token in our service. 
-        // They don't bother us. They completely trust the JWT. 
+        // no persist. We give the JWT to the client. And we completely trust the JWT.
+        // External services do not validate the token in our service.
+        // They don't bother us. They completely trust the JWT.
     }
 
     /**
@@ -34,7 +34,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function isAccessTokenRevoked($tokenId)
     {
-        return false; // Access token hasn't been revoked. 
+        return false; // Access token hasn't been revoked.
     }
 
     /**

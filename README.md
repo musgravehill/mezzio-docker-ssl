@@ -86,6 +86,7 @@
  ## PHP Code Sniffer, coding standard PSR-1, PSR-12
     composer require squizlabs/php_codesniffer --dev    
     composer cs-check   
+    composer cs-fix
 
 ## inputFilter
     composer require --dev laminas/laminas-component-installer

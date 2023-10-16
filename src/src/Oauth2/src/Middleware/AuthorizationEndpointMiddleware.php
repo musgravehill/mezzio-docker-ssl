@@ -16,7 +16,7 @@ use Throwable;
 
 class AuthorizationEndpointMiddleware implements MiddlewareInterface
 {
-    public function  __construct(
+    public function __construct(
         private readonly AuthorizationServer $authorizationServer,
         private readonly ResponseFactoryInterface $responseFactory,
     ) {

@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Oauth2\Repository\AuthCodeRepository;
 
 /*
-    no way! $em->getRepository(AuthCodeEntity::class) return NOT AuthCodeRepositoryInterface, return Doctrine\ORM\EntityRepository 
+    no way! $em->getRepository(AuthCodeEntity::class) return NOT AuthCodeRepositoryInterface, return Doctrine\ORM\EntityRepository
 */
 //#[ORM\Entity(repositoryClass: AuthCodeRepository::class)]
 
@@ -20,7 +20,9 @@ use Oauth2\Repository\AuthCodeRepository;
 #[ORM\Table(name: 'oauth2_auth_code')]
 class AuthCodeEntity implements AuthCodeEntityInterface
 {
-    use EntityTrait, TokenEntityTrait, AuthCodeTrait;
+    use EntityTrait;
+    use TokenEntityTrait;
+    use AuthCodeTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 255)]

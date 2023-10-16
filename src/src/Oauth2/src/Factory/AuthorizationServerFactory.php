@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oauth2\Factory;
 
-use \Defuse\Crypto\Key;
+use Defuse\Crypto\Key;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
@@ -42,7 +42,7 @@ class AuthorizationServerFactory implements FactoryInterface
             responseType: null
         );
 
-        // Enable the authentication code grant on the server with a token TTL 
+        // Enable the authentication code grant on the server with a token TTL
         $server->enableGrantType(
             grantType: new AuthCodeGrant(
                 authCodeRepository: $authCodeRepository,
@@ -52,7 +52,7 @@ class AuthorizationServerFactory implements FactoryInterface
             accessTokenTTL: new \DateInterval('PT100M')
         );
 
-        // Enable the refresh token grant on the server with a token TTL 
+        // Enable the refresh token grant on the server with a token TTL
         $server->enableGrantType(
             grantType: new RefreshTokenGrant($refreshTokenRepository),
             accessTokenTTL: new \DateInterval('PT100M')
@@ -65,7 +65,7 @@ class AuthorizationServerFactory implements FactoryInterface
 
 
         return $server;
-    }   
+    }
 
     protected function getPrivateKey(ContainerInterface $container): string
     {

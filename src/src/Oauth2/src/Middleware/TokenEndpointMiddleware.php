@@ -15,7 +15,7 @@ use Throwable;
 
 class TokenEndpointMiddleware implements MiddlewareInterface
 {
-    public function  __construct(
+    public function __construct(
         private readonly AuthorizationServer $authorizationServer,
         private readonly ResponseFactoryInterface $responseFactory,
     ) {
@@ -25,9 +25,9 @@ class TokenEndpointMiddleware implements MiddlewareInterface
     {
         try {
             $response = $this->responseFactory->createResponse();
-            return $this->authorizationServer->respondToAccessTokenRequest($request, $response);            
+            return $this->authorizationServer->respondToAccessTokenRequest($request, $response);
         } catch (OAuthServerException $exception) {
-            $response = $this->responseFactory->createResponse();            
+            $response = $this->responseFactory->createResponse();
             return $exception->generateHttpResponse($response);
         } catch (Throwable $exception) {
             $response = $this->responseFactory->createResponse();

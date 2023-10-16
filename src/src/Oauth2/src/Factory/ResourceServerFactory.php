@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oauth2\Factory;
 
-use \Defuse\Crypto\Key;
+use Defuse\Crypto\Key;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
@@ -30,7 +30,6 @@ class ResourceServerFactory implements FactoryInterface
 
         $accessTokenRepository = new AccessTokenRepository();
         $server = new ResourceServer(
-
             accessTokenRepository: $accessTokenRepository,
             publicKey: $this->getPublicKey($container),
             authorizationValidator: null,

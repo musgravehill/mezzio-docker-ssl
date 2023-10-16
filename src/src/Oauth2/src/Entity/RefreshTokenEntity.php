@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Oauth2\Entity;
 
-
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
@@ -13,7 +12,7 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use Oauth2\Repository\RefreshTokenRepository;
 
 /*
-    no way! $em->getRepository(RefreshTokenEntity::class) return NOT RefreshTokenEntityInterface, return Doctrine\ORM\EntityRepository 
+    no way! $em->getRepository(RefreshTokenEntity::class) return NOT RefreshTokenEntityInterface, return Doctrine\ORM\EntityRepository
 */
 //#[ORM\Entity(repositoryClass: RefreshTokenRepository::class)]
 
@@ -21,7 +20,8 @@ use Oauth2\Repository\RefreshTokenRepository;
 #[ORM\Table(name: 'oauth2_refresh_token')]
 class RefreshTokenEntity implements RefreshTokenEntityInterface
 {
-    use RefreshTokenTrait, EntityTrait;
+    use RefreshTokenTrait;
+    use EntityTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 255)]

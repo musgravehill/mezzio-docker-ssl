@@ -16,7 +16,7 @@ use Throwable;
 
 class ProtectedResourceMiddleware implements MiddlewareInterface
 {
-    public function  __construct(
+    public function __construct(
         private readonly ResourceServer $resourceServer,
         private readonly ResponseFactoryInterface $responseFactory,
     ) {

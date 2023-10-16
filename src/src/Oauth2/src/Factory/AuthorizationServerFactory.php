@@ -8,6 +8,7 @@ use \Defuse\Crypto\Key;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
+use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
@@ -41,21 +42,27 @@ class AuthorizationServerFactory implements FactoryInterface
             responseType: null
         );
 
-        // Enable the authentication code grant on the server with a token TTL of 1 minute
+        // Enable the authentication code grant on the server with a token TTL 
         $server->enableGrantType(
             grantType: new AuthCodeGrant(
                 authCodeRepository: $authCodeRepository,
                 refreshTokenRepository: $refreshTokenRepository,
-                authCodeTTL: new \DateInterval('PT10M')
+                authCodeTTL: new \DateInterval('PT100M')
             ),
-            accessTokenTTL: new \DateInterval('PT1M')  // period time 1 minute
+            accessTokenTTL: new \DateInterval('PT100M')
         );
 
-        // Enable the refresh token grant on the server with a token TTL of 10 minutes
+        // Enable the refresh token grant on the server with a token TTL 
         $server->enableGrantType(
             grantType: new RefreshTokenGrant($refreshTokenRepository),
-            accessTokenTTL: new \DateInterval('PT10M')
+            accessTokenTTL: new \DateInterval('PT100M')
         );
+
+        $server->enableGrantType(
+            grantType: new ClientCredentialsGrant(),
+            accessTokenTTL: new \DateInterval('PT100M')
+        );
+
 
         return $server;
     }

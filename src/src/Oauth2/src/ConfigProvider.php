@@ -9,10 +9,14 @@ use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use Mezzio\Application;
 use Oauth2\Factory\AuthCodeRepositoryFactory;
+use Oauth2\Factory\AuthorizationEndpointMiddlewareFactory;
 use Oauth2\Factory\AuthorizationServerFactory;
-use Oauth2\Factory\AuthorizationServerMiddlewareFactory;
+use Oauth2\Factory\AuthorizationEntrypointMiddlewareFactory;
 use Oauth2\Factory\RefreshTokenRepositoryFactory;
+use Oauth2\Factory\TokenEndpointMiddlewareFactory;
+use Oauth2\Middleware\AuthorizationEndpointMiddleware;
 use Oauth2\Middleware\AuthorizationEntrypointMiddleware;
+use Oauth2\Middleware\TokenEndpointMiddleware;
 
 class ConfigProvider
 {
@@ -47,9 +51,10 @@ class ConfigProvider
                 AuthCodeRepositoryInterface::class => AuthCodeRepositoryFactory::class,
                 RefreshTokenRepositoryInterface::class => RefreshTokenRepositoryFactory::class,
                 AuthorizationServer::class => AuthorizationServerFactory::class,
-                AuthorizationEntrypointMiddleware::class => AuthorizationServerMiddlewareFactory::class,
+                AuthorizationEntrypointMiddleware::class => AuthorizationEntrypointMiddlewareFactory::class,
+                AuthorizationEndpointMiddleware::class => AuthorizationEndpointMiddlewareFactory::class,
+                TokenEndpointMiddleware::class => TokenEndpointMiddlewareFactory::class,
             ],
-
         ];
     }
 

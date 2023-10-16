@@ -7,6 +7,7 @@ namespace Oauth2\Middleware;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Middleware\AuthorizationServerMiddleware as LeagueAuthorizationServerMiddleware;
+use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use Oauth2\Entity\UserEntity;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -50,59 +51,24 @@ class AuthorizationEntrypointMiddleware implements MiddlewareInterface
         try {
             $authRequest = $this->authorizationServer->validateAuthorizationRequest($request);
 
+            // todo start
             // The next handler must take care of providing the
-            // authenticated user and the approval
-            //$authRequest->setAuthorizationApproved(false);
-
-            // Once the user has logged in set the user on the AuthorizationRequest
-            $authRequest->setUser(new UserEntity('09aac9b1-f9e1-44b4-9381-9255451a3ad0')); // an instance of UserEntityInterface
-
+            // authenticate user, setUser and the approval               
+            $authRequest->setUser(new UserEntity('ebe474a0-45b9-40ef-ad96-dde9bca5e19e')); // an instance of UserEntityInterface
             $authRequest->setAuthorizationApproved(true);
-            
-            return $this->authorizationServer->completeAuthorizationRequest(
-                $authRequest,
-                $this->responseFactory->createResponse()
-            );
+            // todo end          
 
-
-            return $handler->handle($request->withAttribute(AuthorizationRequest::class, $authRequest));
+            // add payload '$authRequest' for next usage
+            $request = $request->withAttribute(AuthorizationRequest::class, $authRequest);
+                        
+            return $handler->handle($request);
         } catch (OAuthServerException $exception) {
             $response = $this->responseFactory->createResponse();
-            // The validation throws this exception if the request is not valid
-            // for example when the client id is invalid
             return $exception->generateHttpResponse($response);
         } catch (Throwable $exception) {
             $response = $this->responseFactory->createResponse();
-            return (new OAuthServerException($exception->getMessage(), 0, 'unknown_error', 500))
+            return (new OAuthServerException($exception->getMessage(), 0, 'OAuthServerException: unsupported exception', 500))
                 ->generateHttpResponse($response);
         }
     }
-
-
-
-
-    /*
-    FOR ENDPOINt MIDDLEWARE 
-    $app->post('/access_token', function (ServerRequestInterface $request, ResponseInterface $response) use ($server) {
-
-    try {
-    
-        // Try to respond to the request
-        return $server->respondToAccessTokenRequest($request, $response);
-
-    } catch (\League\OAuth2\Server\Exception\OAuthServerException $exception) {
-    
-        // All instances of OAuthServerException can be formatted into a HTTP response
-        return $exception->generateHttpResponse($response);
-        
-    } catch (\Exception $exception) {
-    
-        // Unknown exception
-        $body = new Stream(fopen('php://temp', 'r+'));
-        $body->write($exception->getMessage());
-        return $response->withStatus(500)->withBody($body);
-    }
-});
-    
-    */
 }

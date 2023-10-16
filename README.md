@@ -70,14 +70,29 @@ DELETE /news/{id} - удалит новость
         composer require league/oauth2-server   
         composer require defuse/php-encryption
 
-        1. generate private.key, public.key, encryption.key
+        1. composer mezzio migration:up 
+
+        2. generate private.key, public.key
         cd /var/www/src/Oauth2/key 
         openssl genrsa -out private.key 2048
-        openssl rsa -in private.key -pubout -out public.key        
+        openssl rsa -in private.key -pubout -out public.key   
 
+        3. generate encryption.key     
         /var/www/vendor/bin/generate-defuse-key
+        and store string to src/src/Oauth2/src/ConfigProvider.php
+
+        4. test clients
+        User ebe474a0-45b9-40ef-ad96-dde9bca5e19e
+        
+        client_id 09aac9b1-f9e1-44b4-9381-9255451a3ad0
+        client_secret no, isConfidential: false,
+
+        isConfidential: true (machine-to-machine backends)
+        client_id a8fdfb18-9293-4f37-aad2-a52bb383204b
+        client_secret 47e2f77d-a04e-4e08-b627-ba67b9c3d987
 
 
+        https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru/oauth2/token&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=
 
 
 

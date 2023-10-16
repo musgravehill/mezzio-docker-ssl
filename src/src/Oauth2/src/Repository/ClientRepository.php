@@ -13,23 +13,43 @@ use Oauth2\Entity\ClientEntity;
  */
 class ClientRepository implements ClientRepositoryInterface
 {
-    // simple 1 client harcoded here 
-    const clientIdentifier = '09aac9b1-f9e1-44b4-9381-9255451a3ad0';
+    private readonly array $clients;
+
+    public function __construct()
+    {
+        /**
+         * @todo before persist client password_hash('47e2f77d-a04e-4e08-b627-ba67b9c3d987', PASSWORD_BCRYPT);
+         */
+        $this->clients = [
+            '09aac9b1-f9e1-44b4-9381-9255451a3ad0' => [
+                'name' => 'Client app vue',
+                'redirectUri' => getenv('OAUTH2_REDIR_URI'),
+                'isConfidential' => false,
+                'clientSecretHash' => null,
+            ],
+            'a8fdfb18-9293-4f37-aad2-a52bb383204b' => [
+                'name' => 'Client app server',
+                'redirectUri' => getenv('OAUTH2_REDIR_URI'),
+                'isConfidential' => true,
+                'clientSecretHash' => password_hash('47e2f77d-a04e-4e08-b627-ba67b9c3d987', PASSWORD_BCRYPT),
+            ],
+        ];
+    }
 
     /**
      * {@inheritdoc}
      */
     public function getClientEntity($clientIdentifier)
     {
-        if (self::clientIdentifier <> $clientIdentifier) {            
+        if (\array_key_exists($clientIdentifier, $this->clients) === false) {
             return null;
         }
-        
+
         $client = new ClientEntity(
             identifier: $clientIdentifier,
-            name: 'Client app ' . self::clientIdentifier,
-            redirectUri: getenv('OAUTH2_REDIR_URI'),
-            isConfidential: false,
+            name: $this->clients[$clientIdentifier]['name'],
+            redirectUri: $this->clients[$clientIdentifier]['redirectUri'],
+            isConfidential: $this->clients[$clientIdentifier]['isConfidential'],
         );
 
         /*
@@ -48,34 +68,17 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function validateClient($clientIdentifier, $clientSecret, $grantType)
     {
-        if (is_null($this->getClientEntity($clientIdentifier))) {            
-            return false;
-        }
-        
-        // you can check the $clientSecret if client is confidential 
-        // and works with $grantType
-        /*
-        $clients = [
-            'myawesomeapp' => [
-                'secret'          => \password_hash('abc123', PASSWORD_BCRYPT),
-                'name'            => self::CLIENT_NAME,
-                'redirect_uri'    => self::REDIRECT_URI,
-                'is_confidential' => true,
-            ],
-        ];
-
-        // Check if client is registered
-        if (\array_key_exists($clientIdentifier, $clients) === false) {
+        $client = $this->getClientEntity($clientIdentifier);
+        if (is_null($client)) {
             return false;
         }
 
         if (
-            $clients[$clientIdentifier]['is_confidential'] === true
-            && \password_verify($clientSecret, $clients[$clientIdentifier]['secret']) === false
+            $client->isConfidential() === true
+            && \password_verify($clientSecret, $this->clients[$clientIdentifier]['clientSecretHash']) === false
         ) {
             return false;
         }
-        */
 
         return true;
     }

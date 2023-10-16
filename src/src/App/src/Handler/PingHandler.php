@@ -14,6 +14,7 @@ use Oauth2\Entity\ClientEntity;
 use Oauth2\Repository\AuthCodeRepository;
 use Oauth2\Repository\RefreshTokenRepository;
 use Psr\Container\ContainerInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -44,15 +45,8 @@ class PingHandler implements RequestHandlerInterface
         $AuthCode->setUserIdentifier('ebe474a0-45b9-40ef-ad96-dde9bca5e19e');
         $AuthCodeRepository->persistNewAuthCode($AuthCode);
         */
-
-         print_r($AuthCodeRepository->getAuthCodes());
-
-        /**
-         * @var RefreshTokenRepository|RefreshTokenRepositoryInterface $RefreshTokenRepository
-         */
-        $RefreshTokenRepository = $this->container->get(RefreshTokenRepositoryInterface::class);
-
-        $AuthorizationServer =  $this->container->get(AuthorizationServer::class);
+        echo 'AuthCodeRepository->getAuthCodes ';
+        print_r($AuthCodeRepository->getAuthCodes());              
     }
 
 

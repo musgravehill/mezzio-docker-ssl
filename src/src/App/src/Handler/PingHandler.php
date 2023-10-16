@@ -53,7 +53,7 @@ class PingHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
 
-        $this->oauth2();
+        //$this->oauth2();
 
         return new JsonResponse(['ack' => time()]);
     }

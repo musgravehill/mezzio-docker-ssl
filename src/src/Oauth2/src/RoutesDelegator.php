@@ -38,7 +38,7 @@ class RoutesDelegator
 
         ], ['GET', 'POST']);
 
-        $app->get('/oauth2/token', TokenEndpointMiddleware::class);
+        $app->post('/oauth2/token', TokenEndpointMiddleware::class);
 
         return $app;
     }

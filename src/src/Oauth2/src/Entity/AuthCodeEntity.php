@@ -23,7 +23,7 @@ class AuthCodeEntity implements AuthCodeEntityInterface
     use EntityTrait, TokenEntityTrait, AuthCodeTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 80)]
+    #[ORM\Column(type: 'string', length: 255)]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     /**
      * @var string

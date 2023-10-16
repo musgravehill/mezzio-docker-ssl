@@ -15,7 +15,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Throwable;
 
-class AuthorizationServerMiddleware implements MiddlewareInterface
+class AuthorizationEntrypointMiddleware implements MiddlewareInterface
 {
     public function  __construct(
         private readonly AuthorizationServer $authorizationServer,

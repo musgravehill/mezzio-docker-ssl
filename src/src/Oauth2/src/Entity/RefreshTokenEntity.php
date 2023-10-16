@@ -24,7 +24,7 @@ class RefreshTokenEntity implements RefreshTokenEntityInterface
     use RefreshTokenTrait, EntityTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: 'string', length: 80)]
+    #[ORM\Column(type: 'string', length: 255)]
     #[ORM\GeneratedValue(strategy: 'NONE')]
     /**
      * @var string

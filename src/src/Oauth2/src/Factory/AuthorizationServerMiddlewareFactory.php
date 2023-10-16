@@ -6,7 +6,7 @@ namespace Oauth2\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use League\OAuth2\Server\AuthorizationServer;
-use Oauth2\Middleware\AuthorizationServerMiddleware;
+use Oauth2\Middleware\AuthorizationEntrypointMiddleware;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 
@@ -17,10 +17,21 @@ class AuthorizationServerMiddlewareFactory implements FactoryInterface
         ContainerInterface $container,
         $requestedName,
         ?array $options = null
-    ): AuthorizationServerMiddleware {
-        return new AuthorizationServerMiddleware(
+    ): AuthorizationEntrypointMiddleware {
+        $responseFactory = $container->get(ResponseFactoryInterface::class);
+
+        /**
+         * @todo discover this code deeper
+         */
+        if (is_callable($responseFactory)) {
+            $responseFactory = new CallableResponseFactoryDecorator(
+                static fn (): ResponseInterface => $responseFactory()
+            );
+        }
+
+        return new AuthorizationEntrypointMiddleware(
             authorizationServer: $container->get(AuthorizationServer::class),
-            responseFactory: $container->get(ResponseFactoryInterface::class)
+            responseFactory: $responseFactory,
         );
     }
 }

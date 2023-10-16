@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Oauth2;
 
-use Oauth2\Middleware\AuthorizationServerMiddleware;
+use Oauth2\Middleware\AuthorizationEntrypointMiddleware;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -18,9 +18,54 @@ class RoutesDelegator
         /** @var Application $app */
         $app = $callback();
 
-        $app->get('/authorize', [
-            AuthorizationServerMiddleware::class
-        ]);
+        $app->route('/oauth2/authorize', [
+            // SessionMiddleware? 
+
+            AuthorizationEntrypointMiddleware::class,
+
+            /**
+             * @todo 
+             * login User
+             * ask the User to approve the client and the scopes requested
+             */
+            // $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface          
+            // $authRequest->setAuthorizationApproved(true);
+            AuthorizationUserMiddleware::class,
+
+            /**
+             * @todo 
+             * return $server->completeAuthorizationRequest($authRequest, $response);
+             */
+            AuthorizationEndpointMiddleware::class,
+
+        ], ['GET', 'POST']);
+
+        $app->route('/oauth2/authorize', [
+            // SessionMiddleware? 
+
+            AuthorizationEntrypointMiddleware::class,
+
+            /**
+             * @todo 
+             * login User
+             * ask the User to approve the client and the scopes requested
+             */
+            // $authRequest->setUser(new UserEntity()); // an instance of UserEntityInterface          
+            // $authRequest->setAuthorizationApproved(true);
+            AuthorizationUserMiddleware::class,
+
+            /**
+             * @todo 
+             * return $server->completeAuthorizationRequest($authRequest, $response);
+             */
+            AuthorizationEndpointMiddleware::class,
+
+        ], ['GET', 'POST']);
+
+        /**
+         * @todo $this->server->respondToAccessTokenRequest($request, $response) 
+         */
+        $app->post('/oauth2/token', TokenEndpointHandler::class);
 
         return $app;
     }

@@ -12,7 +12,7 @@ use Oauth2\Factory\AuthCodeRepositoryFactory;
 use Oauth2\Factory\AuthorizationServerFactory;
 use Oauth2\Factory\AuthorizationServerMiddlewareFactory;
 use Oauth2\Factory\RefreshTokenRepositoryFactory;
-use Oauth2\Middleware\AuthorizationServerMiddleware;
+use Oauth2\Middleware\AuthorizationEntrypointMiddleware;
 
 class ConfigProvider
 {
@@ -40,19 +40,30 @@ class ConfigProvider
             'invokables' => [],
             'delegators' => [
                 Application::class => [
-                    RoutesDelegator::class,                    
+                    RoutesDelegator::class,
                 ],
             ],
             'factories'  => [
                 AuthCodeRepositoryInterface::class => AuthCodeRepositoryFactory::class,
                 RefreshTokenRepositoryInterface::class => RefreshTokenRepositoryFactory::class,
                 AuthorizationServer::class => AuthorizationServerFactory::class,
-                AuthorizationServerMiddleware::class => AuthorizationServerMiddlewareFactory::class,
+                AuthorizationEntrypointMiddleware::class => AuthorizationServerMiddlewareFactory::class,
             ],
 
         ];
     }
 
+    /* 
+        getcwd() may return false
+        On some Unix variants, getcwd() will return false 
+        if any one of the parent directories does not have the readable or search mode set, 
+        even if the current directory does.
+    */
+    /**
+     * @todo 'access_token_expire'  => 'PT10M', ?
+     *   'refresh_token_expire' => 'PT10M', ?
+     *   'auth_code_expire'     => 'PT10M', ? 
+     */
     public function getOauth2ServerConfig(): array
     {
         return [

@@ -23,7 +23,7 @@ class ClientRepository implements ClientRepositoryInterface
         $this->clients = [
             '09aac9b1-f9e1-44b4-9381-9255451a3ad0' => [
                 'name' => 'Client app vue',
-                'redirectUri' => getenv('OAUTH2_REDIR_URI'),
+                'redirectUri' => 'https://oauth.pstmn.io/v1/vscode-callback',
                 'isConfidential' => false,
                 'clientSecretHash' => null,
             ],

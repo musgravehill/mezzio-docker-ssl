@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace News;
 
 use Mezzio\Application;
-use Mezzio\Authentication\AuthenticationMiddleware;
 use Oauth2\Middleware\ProtectedResourceMiddleware;
 use Psr\Container\ContainerInterface;
 
@@ -19,8 +18,13 @@ class RoutesDelegator
         /** @var Application $app */
         $app = $callback();
 
+        try {
+            $container->get(ProtectedResourceMiddleware::class);
+            $app->pipe('/news', ProtectedResourceMiddleware::class);
+        } catch (\Throwable $th) {
+        }
+
         $app->get('/news', [
-            ProtectedResourceMiddleware::class,
             Handler\ListHandler::class,
         ]);
 

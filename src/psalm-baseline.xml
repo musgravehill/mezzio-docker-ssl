@@ -9,6 +9,11 @@
       <code>ConfigProvider</code>
     </UnusedClass>
   </file>
+  <file src="src/App/src/Handler/PingHandler.php">
+    <UnusedMethod>
+      <code>oauth2</code>
+    </UnusedMethod>
+  </file>
   <file src="src/News/migrations/Version20230912064623.php">
     <UnusedClass>
       <code>Version20230912064623</code>
@@ -67,7 +72,6 @@
   </file>
   <file src="src/News/src/RoutesDelegator.php">
     <PossiblyUnusedParam>
-      <code>$container</code>
       <code>$serviceName</code>
     </PossiblyUnusedParam>
   </file>
@@ -121,35 +125,21 @@
       <code>$userIdentifier</code>
     </UnusedProperty>
   </file>
-  <file src="src/Oauth2/src/Middleware/AuthorizationServerMiddleware.php">
-    <UnusedClass>
-      <code>AuthorizationServerMiddleware</code>
-    </UnusedClass>
-  </file>
-  <file src="src/Oauth2/src/Middleware/ResourceServerMiddleware.php">
-    <UnusedClass>
-      <code>ResourceServerMiddleware</code>
-    </UnusedClass>
-  </file>
-  <file src="src/Oauth2/src/Repository/AccessTokenRepository.php">
-    <UnusedClass>
-      <code>AccessTokenRepository</code>
-    </UnusedClass>
-  </file>
-  <file src="src/Oauth2/src/Repository/ClientRepository.php">
-    <UnusedClass>
-      <code>ClientRepository</code>
-    </UnusedClass>
-  </file>
-  <file src="src/Oauth2/src/Repository/ScopeRepository.php">
-    <UnusedClass>
-      <code>ScopeRepository</code>
-    </UnusedClass>
+  <file src="src/Oauth2/src/Repository/AuthCodeRepository.php">
+    <PossiblyUnusedMethod>
+      <code>getAuthCodes</code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="src/Oauth2/src/Repository/UserRepository.php">
     <UnusedClass>
       <code>UserRepository</code>
     </UnusedClass>
+  </file>
+  <file src="src/Oauth2/src/RoutesDelegator.php">
+    <PossiblyUnusedParam>
+      <code>$container</code>
+      <code>$serviceName</code>
+    </PossiblyUnusedParam>
   </file>
   <file src="src/Oauth2/tests/ScopeEntityTest.php">
     <UnusedClass>

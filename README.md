@@ -83,6 +83,10 @@
 
     vendor/bin/psalm --no-cache
 
+ ## PHP Code Sniffer, coding standard PSR-1, PSR-12
+    composer require squizlabs/php_codesniffer --dev    
+    composer cs-check   
+
 ## inputFilter
     composer require --dev laminas/laminas-component-installer
     composer require laminas/laminas-validator

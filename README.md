@@ -91,10 +91,7 @@ DELETE /news/{id} - удалит новость
         client_id a8fdfb18-9293-4f37-aad2-a52bb383204b
         client_secret 47e2f77d-a04e-4e08-b627-ba67b9c3d987
 
-
-        https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru/oauth2/token&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=
-
-
+        https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=
 
         get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 
         AccessToken in JWT    

@@ -7,15 +7,19 @@ namespace Oauth2;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use League\OAuth2\Server\ResourceServer;
 use Mezzio\Application;
 use Oauth2\Factory\AuthCodeRepositoryFactory;
 use Oauth2\Factory\AuthorizationEndpointMiddlewareFactory;
 use Oauth2\Factory\AuthorizationServerFactory;
 use Oauth2\Factory\AuthorizationEntrypointMiddlewareFactory;
+use Oauth2\Factory\ProtectedResourceMiddlewareFactory;
 use Oauth2\Factory\RefreshTokenRepositoryFactory;
+use Oauth2\Factory\ResourceServerFactory;
 use Oauth2\Factory\TokenEndpointMiddlewareFactory;
 use Oauth2\Middleware\AuthorizationEndpointMiddleware;
 use Oauth2\Middleware\AuthorizationEntrypointMiddleware;
+use Oauth2\Middleware\ProtectedResourceMiddleware;
 use Oauth2\Middleware\TokenEndpointMiddleware;
 
 class ConfigProvider
@@ -54,6 +58,8 @@ class ConfigProvider
                 AuthorizationEntrypointMiddleware::class => AuthorizationEntrypointMiddlewareFactory::class,
                 AuthorizationEndpointMiddleware::class => AuthorizationEndpointMiddlewareFactory::class,
                 TokenEndpointMiddleware::class => TokenEndpointMiddlewareFactory::class,
+                ResourceServer::class => ResourceServerFactory::class,
+                ProtectedResourceMiddleware::class => ProtectedResourceMiddlewareFactory::class,
             ],
         ];
     }

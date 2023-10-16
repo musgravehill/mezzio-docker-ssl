@@ -65,18 +65,7 @@ class AuthorizationServerFactory implements FactoryInterface
 
 
         return $server;
-    }
-
-    protected function getPublicKey(ContainerInterface $container): string
-    {
-        $config = $container->get('config')['oauth2_server_config'] ?? [];
-        if (!isset($config['publicKey']) || empty($config['publicKey'])) {
-            throw new UnexpectedValueException(
-                'The publicKey value is missing in config'
-            );
-        }
-        return $config['publicKey'];
-    }
+    }   
 
     protected function getPrivateKey(ContainerInterface $container): string
     {

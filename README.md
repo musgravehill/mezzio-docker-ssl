@@ -108,10 +108,28 @@
     composer update --lock   #update .lock by edited .json, without install\update packages
     --dry-run                                   #Simulate the command without actually doing anything
 
-## TEST
+## phpunit test
     src/phpunit.xml.dist
     src/composer.json "autoload-dev":  "Oauth2\\tests\\": "src/Oauth2/tests" 
     composer test
+
+## codeception test
+    1.
+    composer require codeception/codeception --dev
+    composer require codeception/module-rest --dev
+
+    2. select
+    php vendor/bin/codecept bootstrap           #full
+    php vendor/bin/codecept init Api            #api only
+    php vendor/bin/codecept init Acceptance     #Acceptance only
+
+    3.
+    php vendor/bin/codecept generate:suite api
+    php vendor/bin/codecept generate:cest api ListNews
+
+    4.
+    php vendor/bin/codecept run --steps
+
 
 ## PSALM 
     composer require --dev vimeo/psalm

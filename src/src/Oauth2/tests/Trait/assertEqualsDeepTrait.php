@@ -6,7 +6,7 @@ namespace Oauth2\tests\Trait;
 
 use PHPUnit\Framework\TestCase;
 
-trait assertEqualsDeep
+trait assertEqualsDeepTrait
 {
     /**
      * @param object|array $expected
@@ -27,6 +27,7 @@ trait assertEqualsDeep
      */
     private function hash($value)
     {
+        // serialize(), json_encode() ? 
         if (is_object($value)) {
             // array union vs array_merge()
             $value = ['__CLASS__' => get_class($value)] + get_object_vars($value);

@@ -9,7 +9,8 @@
         Error handlers
     oauth2-server (Authorization code w\wo PKCE, Refresh token, Client credentials)
     Psalm
-    Unit tests
+    Unit test
+    Codeception test
     Xdebug
     Docker 
     Coding standard PSR-12 cs-check, cs-fix

@@ -114,6 +114,7 @@
     composer test
 
 ## codeception test
+    0. Unit Functional Acceptance
     1.
     composer require codeception/codeception --dev
     composer require codeception/module-rest --dev
@@ -124,8 +125,9 @@
     php vendor/bin/codecept init Acceptance     #Acceptance only
 
     3.
-    php vendor/bin/codecept generate:suite api
-    php vendor/bin/codecept generate:cest api ListNews
+    #php vendor/bin/codecept generate:suite api
+    #php vendor/bin/codecept generate:stepobject api Oauth2
+    #php vendor/bin/codecept generate:cest api NewsList   
 
     4.
     php vendor/bin/codecept run --steps

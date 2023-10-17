@@ -42,16 +42,16 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
-    // $app->get('/', App\Handler\PingHandler::class, 'home');
+    $app->get('/', App\Handler\PingHandler::class, 'home');
     
-    $app->get('/', static function (ServerRequestInterface $request, RequestHandlerInterface $next) use ($container): ResponseInterface {
-        /**
-         * @var ResponseInterface $response
-         */
+    /*
+    $app->get('/', static function (ServerRequestInterface $request, RequestHandlerInterface $next) use ($container): ResponseInterface {        
+        @var ResponseInterface $response         
         //$response = $container->get(ResponseInterface::class)->createResponse(); // factory?
         //$response = $container->get(ResponseInterface::class)(); // callable?
         //$response->withBody()
         //echo json_encode($request->getQueryParams()['code'] ?? '');
         return new JsonResponse($request->getQueryParams());
     });
+    */
 };

@@ -21,14 +21,14 @@ class ClientRepository implements ClientRepositoryInterface
          */
         $this->clients = [
             '09aac9b1-f9e1-44b4-9381-9255451a3ad0' => [
-                'name' => 'Client app vue',
-                'redirectUri' => 'https://oauth.pstmn.io/v1/vscode-callback',
+                'name' => 'Client app public Postman Vscode',
+                'redirectUri' => getenv('OAUTH2_REDIR_URI_CODE_PKCE'),
                 'isConfidential' => false,
                 'clientSecretHash' => null,
             ],
             'a8fdfb18-9293-4f37-aad2-a52bb383204b' => [
-                'name' => 'Client app server',
-                'redirectUri' => getenv('OAUTH2_REDIR_URI'),
+                'name' => 'Client app server-server',
+                'redirectUri' => getenv('OAUTH2_REDIR_URI_CODE'),
                 'isConfidential' => true,
                 'clientSecretHash' => password_hash('47e2f77d-a04e-4e08-b627-ba67b9c3d987', PASSWORD_BCRYPT),
             ],

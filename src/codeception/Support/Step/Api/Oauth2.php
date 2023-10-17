@@ -1,17 +1,18 @@
 <?php
 
-namespace Tests\Api;
+declare(strict_types=1);
 
-use Tests\Support\ApiTester;
+namespace Tests\Support\Step\Api;
 
-class ListNewsCest
+class Oauth2 extends \Tests\Support\ApiTester
 {
-    const authorizeUrl = 'https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=';
+    const authorizeUrl = 'https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru/oauth2/result&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=';
     const tokenUrl = 'https://x.not-real.ru/oauth2/token'; //POST x-www-form-urlencoded
     private ?string $token = null;
 
-    public function _before(ApiTester $I)
+    public function auth()
     {
+        $I = $this;
         $I->sendGet(self::authorizeUrl);
         $responseAuth = json_decode($I->grabResponse(), true);
         $code = $responseAuth['code'] ?? null;
@@ -21,7 +22,7 @@ class ListNewsCest
             'grant_type' => 'authorization_code',
             'client_id' => 'a8fdfb18-9293-4f37-aad2-a52bb383204b',
             'client_secret' => '47e2f77d-a04e-4e08-b627-ba67b9c3d987',
-            'redirect_uri' => 'https://x.not-real.ru',
+            'redirect_uri' => 'https://x.not-real.ru/oauth2/result',
         ]);
         $responseToken = json_decode($I->grabResponse(), true);
         /*
@@ -32,18 +33,7 @@ class ListNewsCest
         */
         $access_token = $responseToken['access_token'] ?? null;
         $this->token = $access_token;
-    }
 
-    public function tryToTest(ApiTester $I)
-    {
         $I->amBearerAuthenticated($this->token);
-        $I->haveHttpHeader('Content-Type', 'application/x-www-form-urlencoded');
-        $I->sendGet('/news', [
-            'page' => 1,
-            'limit' => 3,
-        ]);
-        $I->seeResponseCodeIsSuccessful();
-        $I->seeResponseIsJson();
-        $I->seeResponseContains('title');
     }
 }

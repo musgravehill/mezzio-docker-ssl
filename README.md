@@ -31,14 +31,8 @@
     -18	HTTP Client	
     20	Clock
 
-## Commands 
-    set DEV mode to control all warn\err:
-    docker container attach shell. 
-    cd /var/www 
-    composer development-enable  
-    composer development-disable  
-    composer development-status  
-    composer clear-config-cache   #clean mezzio config cache in non-dev mode (in dev-mode the cache is disabled)  
+## swagger
+    swagger-api.yaml 
 
 ## Event
     EventDispatcher component implements the Mediator and Observer design patterns.       
@@ -217,6 +211,15 @@ GET /news - выведет список новостей
 POST /news - создаст новую новость
 DELETE /news/{id} - удалит новость   
 "функционал редактирования и публикации новости."
+
+## Commands 
+    set DEV mode to control all warn\err:
+    docker container attach shell. 
+    cd /var/www 
+    composer development-enable  
+    composer development-disable  
+    composer development-status  
+    composer clear-config-cache   #clean mezzio config cache in non-dev mode (in dev-mode the cache is disabled)  
 
 ## additional
     === Domain purity ===

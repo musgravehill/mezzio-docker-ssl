@@ -1,0 +1,96 @@
+---
+openapi: 3.0.0
+info:
+  title: Mezzio Access Code Flow OAuth2 Project
+  description: OAuth2 Access Code Flow in Mezzio API.
+  contact:
+    name: Musgravehill
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/MUSGRAVEHILL_1/Mezzio/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://x.not-real.ru
+  description: Dev & local env.
+security:
+- accessCode:
+  - not-supported
+paths:
+  /news:
+    get:
+      summary: News list
+      description: Get list of news
+      parameters:
+      - name: page
+        in: query
+        description: The number of page
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: The numbers of items to return
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Create new News
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/news_body'
+        required: true
+      responses:
+        "200":
+          description: Created
+  /news/{id}:
+    delete:
+      summary: Delete News
+      parameters:
+      - name: id
+        in: path
+        description: The news ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Deletes
+  /:
+    get:
+      summary: Server heartbeat operation
+      description: Server heartbeat ACK
+      responses:
+        "200":
+          description: OK
+      security: []
+components:
+  schemas:
+    news_body:
+      required:
+      - text
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+        text:
+          type: string
+  securitySchemes:
+    accessCode:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://x.not-real.ru/oauth2/authorize
+          tokenUrl: https://x.not-real.ru/oauth2/token
+          scopes:
+            full: allows all

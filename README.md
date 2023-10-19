@@ -199,6 +199,10 @@
         client_id a8fdfb18-9293-4f37-aad2-a52bb383204b
         client_secret 47e2f77d-a04e-4e08-b627-ba67b9c3d987
 
+        API Swagger 
+        client_id 31db37a7-5693-4338-ab6e-e97a4d7804b9 
+        client_secret b4ec7c93-5504-4217-bd12-a1cb8b2a55a5
+
         https://x.not-real.ru/oauth2/authorize?response_type=code&client_id=a8fdfb18-9293-4f37-aad2-a52bb383204b&redirect_uri=https://x.not-real.ru&scope=full&client_secret=47e2f77d-a04e-4e08-b627-ba67b9c3d987&state=
 
         get-post Authorization Code, get AccessToken with RefreshToken, do Refresh action. 

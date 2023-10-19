@@ -32,6 +32,12 @@ class ClientRepository implements ClientRepositoryInterface
                 'isConfidential' => true,
                 'clientSecretHash' => password_hash('47e2f77d-a04e-4e08-b627-ba67b9c3d987', PASSWORD_BCRYPT),
             ],
+            '31db37a7-5693-4338-ab6e-e97a4d7804b9' => [
+                'name' => 'Swagger',
+                'redirectUri' => 'https://app.swaggerhub.com/oauth2_redirect',
+                'isConfidential' => true,
+                'clientSecretHash' => password_hash('b4ec7c93-5504-4217-bd12-a1cb8b2a55a5', PASSWORD_BCRYPT),
+            ],
         ];
     }
 

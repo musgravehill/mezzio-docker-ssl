@@ -28,7 +28,7 @@ services:
         - APP_ENV=${APP_ENV}
     env_file: .env
     environment:
-        OAUTH2_REDIR_URI: ${OAUTH2_REDIR_URI} # for prod,dev,test. From .env => in all .php  getenv('OAUTH2_REDIR_URI');
+        OAUTH2_REDIR_URI_CODE: ${OAUTH2_REDIR_URI_CODE} # for prod,dev,test. From .env => in all .php  getenv('OAUTH2_REDIR_URI_CODE');
     volumes:
       - ./src:/var/www:rw
     ports:

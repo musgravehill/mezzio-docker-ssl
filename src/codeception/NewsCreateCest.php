@@ -9,6 +9,7 @@ class NewsCreateCest
 {
     public function _before(Oauth2 $I)
     {
+        //some
     }
 
     public function tryToTest(Oauth2 $I)
